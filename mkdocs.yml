@@ -25,6 +25,8 @@ theme:
     - content.code.annotate
     - content.tooltips
     - content.tabs.link
+    - search.suggest
+    - search.highlight
 
 markdown_extensions:
   - def_list
@@ -45,11 +47,44 @@ markdown_extensions:
   - pymdownx.tilde
   - toc:
       permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 plugins:
+  - search
   - git-revision-date-localized:
       enable_creation_date: true
       type: timeago
 
 nav:
   - Getting started: index.md
+  - Requests: requests.md
+  - Responses: responses.md
+  - Authorization: auth/index.md
+  - Cash In:
+      - Cash In - Introduction : cash_in/index.md
+      - Flow diagram: cash_in/flow.md
+      - Cash In: cash_in/cash_in.md
+      - Cheque generation: cash_in/cheque_generation.md
+  - Daily:
+      - Daily requests - Introduction : daily/index.md
+      - Reports: daily/reports.md
+      - Fees: daily/fees.md
+      - Payments: daily/payments.md
+  - Payments:
+      - Payments - Introduction: payments/index.md
+      - Schema: payments/schema.md
+      - Create payment: payments/create.md
+      - Daily requests: daily/payments.md
+  - Fees:
+      - Fees - Introduction : fees/index.md
+      - Fees: fees/fees.md
+      - Policies: fees/policies.md
+      - Daily requests: daily/fees.md
+  - Reports:
+      - Reports - Introduction : reports/index.md
+      - Daily requests: daily/reports.md
+  - Constants: constants.md
