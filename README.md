@@ -1,6 +1,6 @@
-# Vendor API
+# Terminal API
 
-REST API for vendors.
+REST API for terminals.
 
 ## Info
 
