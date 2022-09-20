@@ -2,6 +2,8 @@
 
 REST API for terminals.
 
+Documentation deployed [here](https://iumicash.github.io/terminal-api/).
+
 ## Info
 
 Documentation uses beautiful library [mkdocs](https://squidfunk.github.io/mkdocs-material/) under the hood.
