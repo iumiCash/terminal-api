@@ -3,8 +3,8 @@
 ## API requests
 
 To make a REST API request, you combine the HTTP `GET`, `POST`, `PUT`, `PATCH`, or `DELETE` method, 
-the URL to the API service, the URI to a resource to query, submit data to, update, or delete,
-and one or more HTTP request headers.
+the URL to the API service, the URIto a resource to query, submit data to, update, or delete,
+and one or more HTTP request header.
 
 !!! Tip
     The URL to the API service is either:

@@ -68,6 +68,9 @@ nav:
       - Cash In - Introduction : cash_in/index.md
       - Flow diagram: cash_in/flow.md
       - Cheque generation: cash_in/cheque_generation.md
+  - Users:
+      - Retrieve user: users/retrieve.md
+      - Create order: users/create_order.md
   - Daily:
       - Daily requests - Introduction : daily/index.md
       - Reports: daily/reports.md
