@@ -1,0 +1,29 @@
+{
+  "key": "solomon_power",
+  "rules": [
+    {
+      "less_than": 10100,
+      "more_than": 0,
+      "external_fee_in_percents": 0,
+      "internal_fee_in_percents": 0,
+      "external_fee_fix": 125,
+      "internal_fee_fix": 175,
+      "external_cashback_in_percents": 0,
+      "internal_cashback_in_percents": 0,
+      "external_cashback_fix": 0,
+      "internal_cashback_fix": 0
+    },
+    {
+      "less_than": 1000000,
+      "more_than": 10100,
+      "external_fee_in_percents": 0,
+      "internal_fee_in_percents": 0,
+      "external_fee_fix": 125,
+      "internal_fee_fix": 175,
+      "external_cashback_in_percents": 0,
+      "internal_cashback_in_percents": 0,
+      "external_cashback_fix": 0,
+      "internal_cashback_fix": 0
+    }
+  ]
+}

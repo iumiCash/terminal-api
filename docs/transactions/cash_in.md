@@ -1,36 +1,54 @@
-# Retrieve user
+# Deposit request
 
-## Retrieve user API
+## Deposit request API
 
-Retrieve user by `username`
+Deposit money request.
 
-`GET /api/v1/users/<username:str>/`
+`POST /api/v1/transactions/cash_in/`
 
 
 ### Headers
 
 ???+ info "Header parameters"
 
+    `RequestId` *string*
+    :    Idempotency key for request. See [idempotency] for more information.
+
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
          The value is `Basic <base64string username:password>`
+
+    `Content-Type` *string* **required**
+    :    The media type. Required for operations with a request body. The value is `application/<format>`, where format is `json`.
+
+
+### Request
+
+???+ info "Request body"
+
+    `username` *string* **required**
+    :    User's username.
+
+    `amount` *Decimal* **required**
+    :    Deposit amount.
+
+    `terminal_id` *UUID* **required**
+    :    From which terminal making deposit request.
+
+    `fees` [*object*](#fees) **required**
+    :    Included fees.
 
 
 ### Response
 
 ???+ success "Response"
 
-    `username` *string* **unique**
-    :    User's username.
+    `transaction_id` *UUID*
+    :    Transaction ID. You can use it later to check transaction details.
 
-    `first_name` *string*
+    `cheque_content` *string*
     :    User's first name.
 
-    `last_name` *string*
-    :    User's last name.
-
-    `currency_code` *enum*. See [available currencies](#currencies).
-    :    Currency of account.
 
 ### Examples
 
@@ -41,8 +59,9 @@ Retrieve user by `username`
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/john_doe/ \
-        -H "Authorization: Basic <base64 encoded username:password>"
+        curl -v -X POST https://terminal-api.iumi.cash/api/v1/users/john_doe/ \
+        -H "Authorization: Basic <base64 encoded username:password>" \
+        -d \
         ```
 
     === "Response"
@@ -78,7 +97,7 @@ Retrieve user by `username`
         When username not exist, you will see error message. 
 
         !!! Tip
-            See another [possible errors].
+            [Here](#) you can find more possible errors.
 
         === "Status code"
             `HTTP 404 Not Found`
@@ -107,7 +126,7 @@ Retrieve user by `username`
         If you not provide authentication header, you will see error message.
 
         !!! Tip
-            See another [possible errors].
+            [Here](#) you can find more possible errors.
 
         === "Status code"
             `HTTP 403 Forbidden`
@@ -135,5 +154,10 @@ Request and response objects
     * `SBD`
     * `NZD`
 
+### Fees
 
-[possible errors]: /responses/#failed-requests
+???+ info "Description"
+
+    Fees.
+
+[idempotency]: /idempotency/

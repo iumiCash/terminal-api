@@ -1,24 +1,23 @@
 # Cheque generation
 
-The receipt is sending in the `check_content` field in several responses. 
+The receipt is sending in the `cheque_content` field in several responses. 
 This is the json values code that the terminal renders after inserting `cheque_content` between the constant header and footer.
 
-`check_content` Example:
 
 ### Response
 
 ???+ success "Response"
 
     `transaction_id` *UUID* **unique**
-    
+
     :    iumiCash transaction identifier.
 
     `created_at` *datetime*
-    
-    :    Created time of the order in ISO format.
+
+    :    Created time of the transaction in ISO format.
 
     `cheque_content` *object* 
-    
+
     :    Cheque content can be one of follows:
     
          * `created_at`

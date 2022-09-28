@@ -56,7 +56,7 @@ such as `first_name` and `last_name`. The terminal waits for one minute until th
 
 ### error_page
 
-# ToDo
+This page displays any possible error. For example, if a response does not have `2xx Status code`.
 
 If Response from `GET /api/v1/users/<username:str>/` returned `4xx Status Code`, terminal displays error details.
 (`User Not Found`, `User is deactivated`, etc.) and returns user to the [start page](#start) after 10 seconds.
@@ -81,4 +81,5 @@ In parallel, the terminal system sends a CashIn request to the iumiCash backend.
 
 ### successful_deposit_request
 
-# Todo
+If transaction received, terminal displays transaction details and prints cheque using `cheque_content`.
+For more details, see [Cheque generation](/cash_in/cheque_generation)
