@@ -4,35 +4,8 @@ The receipt is sending in the `cheque_content` field in several responses.
 This is the json values code that the terminal renders after inserting `cheque_content` between the constant header and footer.
 
 
-### Response
-
-???+ success "Response"
-
-    `transaction_id` *UUID* **unique**
-
-    :    iumiCash transaction identifier.
-
-    `created_at` *datetime*
-
-    :    Created time of the transaction in ISO format.
-
-    `cheque_content` *object* 
-
-    :    Cheque content can be one of follows:
-    
-         * `created_at`
-         * `description`
-         * `transaction_id`
-         * `terminal_id`
-         * `internal_fee`
-         * `external_fee`
-         * `total`
-
-    :   !!! info
-            Each parameter from `cheque_content` has the structure with the next format:
-    
-            * `label`: Name of the field. Usually displayed on the left side
-            * `value`: Formatted value of the field. Usually displayed on the right side
+!!! Tip
+    For more information about request see [cash in transaction](/transactions/cash_in/).
 
 
 ### Examples
@@ -52,7 +25,7 @@ This is the json values code that the terminal renders after inserting `cheque_c
           "username": "fshevchenko",
           "amount": "10.00",
           "internal_fee": "0.10",
-          "terminal": "190AB"
+          "terminal_id": "190AB"
         }
         '
         ```
@@ -94,7 +67,7 @@ This is the json values code that the terminal renders after inserting `cheque_c
         }
         ```
 
-Cheque Example:
+### Cheque example
 
 <div class="container">
   <div class="logo-container">

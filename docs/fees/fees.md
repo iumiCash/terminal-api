@@ -106,7 +106,7 @@ Imagine that a user wants to pay $amount$ dollars. If $more\_than$ $\leqslant$ $
 
 The final formula to calculate total sum of a transaction:
 
-!!! note "Abbreviation"
+!!! note "Abbreviations"
 
     * TS = total_sum
     * EFF = external_fee_fix

@@ -43,12 +43,31 @@ Deposit money request.
 
 ???+ success "Response"
 
-    `transaction_id` *UUID*
-    :    Transaction ID. You can use it later to check transaction details.
+    `transaction_id` *UUID* **unique**
 
-    `cheque_content` *string*
-    :    User's first name.
+    :    iumiCash transaction identifier. You can use it later to check transaction details.
 
+    `created_at` *datetime*
+
+    :    Created time of the transaction in ISO format.
+
+    `cheque_content` *object* 
+
+    :    Cheque content can be one of follows:
+    
+         * `created_at`
+         * `description`
+         * `transaction_id`
+         * `terminal_id`
+         * `internal_fee`
+         * `external_fee`
+         * `total`
+
+    :   !!! info
+            Each parameter from `cheque_content` has the structure with the next format:
+    
+            * `label`: Name of the field. Usually displayed on the left side
+            * `value`: Formatted value of the field. Usually displayed on the right side
 
 ### Examples
 
@@ -61,7 +80,14 @@ Deposit money request.
         ```bash
         curl -v -X POST https://terminal-api.iumi.cash/api/v1/users/john_doe/ \
         -H "Authorization: Basic <base64 encoded username:password>" \
-        -d \
+        -d ' \
+        {
+          "username": "fshevchenko",
+          "amount": "10.00",
+          "internal_fee": "0.10",
+          "terminal_id": "190AB"
+        }
+        '
         ```
 
     === "Response"
