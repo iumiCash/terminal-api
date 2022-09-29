@@ -2,17 +2,26 @@
 
 This section will describe the fee calculation policy for different types of services. 
 The fee structure is always the same, only the values differ. 
-The detailed information of this structure is described below.
+
+The commission calculation is necessary in order to transfer the amount, 
+taking into account the deduction of all commissions, cashback, etc. from the amount entered by the user into the terminal.
+
 
 ### Response
 
-???+ success "Response"
+???+ info "Fee object"
 
     `key` *string* **unique**
     
     :    Transaction type key
 
-    `rules` **list of [*rule*](#rule)**
+    `max_amount` [*integer*](#cent-integer)
+    
+    :    Transaction maximum amount
+    :   !!! note
+            This value is stored as cents.
+
+    `rules` *list of [*rule*](#rule)*
     
     :    This field describes which rule element should be applied to the entered amount. Fields of rules element:
     
@@ -35,18 +44,18 @@ The detailed information of this structure is described below.
 
 ### Rule
 
-???+ success "Rule object"
+??? success "Rule object"
 
-    `less_than` *integer*
+    `less_than` [*integer*](#cent-integer)
     
     :   The amount need to be less than or equal the value of this field to accept this rule object.
     :   !!! note
             This value is stored as cents.
 
-    `more_than` *integer*
+    `more_than` [*integer*](#cent-integer)
     
     :   The amount need to be more than the value of this field to accept this rule object.
-    :   !!! note
+    :   !!! note ""
              This value is stored as cents.
 
     `external_fee_in_percents` *decimal*   
@@ -63,7 +72,7 @@ The detailed information of this structure is described below.
 
     :    Commission charged by a third party.
          The commission is charged as a fixed value regardless of the transaction amount.
-    :   !!! note
+    :   !!! note ""
              This value is stored as cents.
 
      `internal_fee_fix` *integer*   
@@ -100,9 +109,10 @@ The detailed information of this structure is described below.
              * This value is stored as cents.
 
 
-
-
-Imagine that a user wants to pay $amount$ dollars. If $more\_than$ $\leqslant$ $amount$ $<$ $less\_than$, the rule is acceptable.
+!!! success "Rule condition"
+    You need to use the rule, where user $amount$ is statisfied the next condition:
+    
+    $more\_than$ $\leqslant$ $amount$ $<$ $less\_than$
 
 The final formula to calculate total sum of a transaction:
 
@@ -118,7 +128,9 @@ The final formula to calculate total sum of a transaction:
     * ECP = external_cashback_percents
     * ICP = internal_cashback_percents
 
-!!! warning "Not right"
+### Total sum formula
+
+!!! warning "Direct formula for calculating the total sum"
 
     $$
     \begin{aligned}
@@ -130,12 +142,17 @@ The final formula to calculate total sum of a transaction:
 
 
 !!! danger
-    Final amount of money that user will receive to its account differs from actual input amount.
+    Final amount of money that user will receive to terminal differs from actual input amount.
+    That's why the main purpose is calculating the amount which need to be topped up.
 
+### Amount formula
 
-$$
-\begin{aligned}
-amount = \frac{TS - (EFF\ ||\ 0) - (IFF\ ||\ 0) - (ECF\ ||\ 0) - (ICF\ ||\ 0)}
-{1 + (EFP\ ||\ 0)/100 + (IFP\ ||\ 0)/100 + (ECP\ ||\ 0)/100 + (ICP\ ||\ 0)/100}
-\end{aligned}
-$$
+!!! success "The inverse formula for calculating the amount"
+    fdf    
+
+    $$
+    \begin{aligned}
+    amount = \frac{TS - (EFF\ ||\ 0) - (IFF\ ||\ 0) - (ECF\ ||\ 0) - (ICF\ ||\ 0)}
+    {1 + (EFP\ ||\ 0)/100 + (IFP\ ||\ 0)/100 + (ECP\ ||\ 0)/100 + (ICP\ ||\ 0)/100}
+    \end{aligned}
+    $$

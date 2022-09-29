@@ -25,6 +25,7 @@ This is the json values code that the terminal renders after inserting `cheque_c
           "username": "fshevchenko",
           "amount": "10.00",
           "internal_fee": "0.10",
+          "system_transaction_id": "31212",
           "terminal_id": "190AB"
         }
         '
@@ -37,6 +38,7 @@ This is the json values code that the terminal renders after inserting `cheque_c
         ```bash
         {
           "transaction_id": "390IDFE2",
+          "system_transaction_id": "31212",
           "created_at": "2022-05-23T12:36:23",
           "cheque_content": {
             "created_at": {
@@ -48,7 +50,11 @@ This is the json values code that the terminal renders after inserting `cheque_c
               "value": "Cash In for @fshevchenko account"
             },
             "transaction_id": {
-              "label": "Transaction",
+              "label": "iumiCash Transaction",
+              "value": "390IDFE2"
+            },
+            "system_transaction_id": {
+              "label": "Terminal transaction",
               "value": "390IDFE2"
             },
             "terminal_id": {
@@ -84,8 +90,12 @@ This is the json values code that the terminal renders after inserting `cheque_c
     <p class="row-item_value">Cash In for @fshevchenko account</p>
   </div>
   <div class="row-item">
-    <p class="row-item_text">Transaction:</p>
+    <p class="row-item_text">iumiCash Transaction:</p>
     <p class="row-item_value">390IDFE2</p>
+  </div>
+  <div class="row-item">
+    <p class="row-item_text">Terminal Transaction:</p>
+    <p class="row-item_value">31212</p>
   </div>
   <div class="row-item">
     <p class="row-item_text">Terminal:</p>

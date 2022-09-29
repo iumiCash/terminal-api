@@ -1,34 +1,41 @@
 # Flow diagram
 
-!!! success Tip
-    
-    For more information see [Mermaid.js](https://squidfunk.github.io/mkdocs-material/reference/diagrams/)
-    
+
 ```mermaid
-graph TD
-    start[Start] --> input_username[/"Input @username"/];
-    input_username --> check_username{"Is @username exists?"};
-    check_username --> |Yes| username_exist["Receive username info"];
-    check_username --> |No| error_page(("4xx error page"));
-    error_page -- "After 10 sec redirect to" --> start;
+flowchart TD
+    start([Start]) ----> input_username[\"Input username"/];
     
-    username_exist --> username_approving("Click Approve button");
-    username_approving --> waiting_for_deposit[["Waiting for money deposit"]];
-    waiting_for_deposit --> next_after_money_deposit("Click Next button");
-    next_after_money_deposit --> deposit_request["Make deposit request"];
-    deposit_request ----> |"HTTP 4xx"| error_page;
+    subgraph username_validation ["Username validation"];
+        input_username --> check_username_request>"Check username request"];
+        check_username_request --> |HTTP 4xx-5xx| error_page(["HTTP 4xx: Not Exist"]);
+        error_page --> input_username;
+        check_username_request ----> |HTTP 200 OK| show_username_info["Show username info"];
+    end;
+    
+    show_username_info -- "Click Approve button" ----> insert_money[\"Insert money"/];
+    
+    subgraph money_inserting ["Inserting money"];
+        insert_money --> show_inserted_money_amount["Show inserted money amount"];
+        show_inserted_money_amount --> insert_money;
+    end;
+    
+    show_inserted_money_amount -- "Click Next button" ---> deposit_request>"Make deposit request"];
     deposit_request --> |"HTTP 201 Created"| successful_deposit_request["Received transaction details"];
+    deposit_request --> |"HTTP 4xx-5xx"| error_deposit_request["Transaction in progress"];
+    successful_deposit_request --> print_cheque[["Print cheque"]];
+    error_deposit_request --> print_cheque[["Print cheque"]];
 
     click start href "#start";
     click input_username href "#input_username";
-    click check_username href "#retrieve_user";
-    click username_exist href "#username_exist";
+    click check_username_request href "#check_username_request";
+    click show_username_info href "#show_username_info";
     click error_page href "#error_page";
-    click username_approving href "#username_approving";
-    click waiting_for_deposit href "#waiting_for_deposit";
-    click next_after_money_deposit href "#next_after_money_deposit";
+    click insert_money href "#insert_money";
+    click show_inserted_money_amount href "#show_inserted_money_amount";
     click deposit_request href "#deposit_request";
     click successful_deposit_request href "#successful_deposit_request";
+    click error_deposit_request href "#error_deposit_request";
+    click print_cheque href "#print_cheque";
 ```
 
 
@@ -43,13 +50,13 @@ The initial screen with the ability to enter username and click on the "Next" bu
 
 The user enters username and clicks on the "Next" button
 
-### retrieve_user
+### check_username_request
 
 The terminal system sends a request to the iumiCash server at `GET /api/v1/users/<username:str>/`.
 
 See [This link](/users/retrieve/) for more information about this request.
 
-### username_exist
+### show_username_info
 
 If Response from `GET /api/v1/users/<username:str>/` returned `200 OK`, terminal displays username details,
 such as `first_name` and `last_name`. The terminal waits for one minute until the user clicks the "Next" button.
@@ -61,17 +68,13 @@ This page displays any possible error. For example, if a response does not have 
 If Response from `GET /api/v1/users/<username:str>/` returned `4xx Status Code`, terminal displays error details.
 (`User Not Found`, `User is deactivated`, etc.) and returns user to the [start page](#start) after 10 seconds.
 
-### username_approving
-
-The client makes sure that the `first_name` and `last_name` matches the person whose username he entered and click the "Approve" button.
-
-### waiting_for_deposit
+### insert_money
 
 The terminal waits for the user to enter money.
 
-### next_after_money_deposit
+### show_inserted_money_amount
 
-After the client has entered a sufficient amount for Cash In, he clicks on the "Next" button.
+The terminal shows inserted money amount.
 
 ### deposit_request
 
@@ -79,7 +82,18 @@ The client is shown the final information about the inserted data, total sum and
 Loading is also output to get the status and details of the transaction.
 In parallel, the terminal system sends a CashIn request to the iumiCash backend.
 
+See [cash in transaction](/transactions/cash_in/) for request details.
+
 ### successful_deposit_request
 
-If transaction received, terminal displays transaction details and prints cheque using `cheque_content`.
+If transaction received, terminal displays transaction details.
+
+### error_deposit_request
+
+If transaction failed, terminal displays error details.
+
+### print_cheque
+
+Prints cheque using `cheque_content` from [successful deposit request](#successful_deposit_request).
+
 For more details, see [Cheque generation](/cash_in/cheque_generation)
