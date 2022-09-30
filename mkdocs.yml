@@ -95,7 +95,6 @@ nav:
       - Payments - Introduction: payments/index.md
       - Payment Schema: payments/get_payment_schema.md
       - Flow diagram: payments/flow.md
-      - Create payment: payments/create.md
       - Cheque generation: payments/cheque_generation.md
       - Daily requests: daily/payments.md
   - Fees:
