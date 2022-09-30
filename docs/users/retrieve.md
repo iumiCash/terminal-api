@@ -136,4 +136,4 @@ Request and response objects
     * `NZD`
 
 
-[possible errors]: /responses/#failed-requests
+[possible errors]: ../responses.md#failed-requests

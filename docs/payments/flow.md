@@ -78,7 +78,7 @@ The user clicked on the payment.
 
 The terminal system sends a request to the iumiCash server at `GET /api/v1/payments/get-payment-schema/<key>`.
 
-See [This link](/payments/get_payment_schema/) for more information about this request.
+See [This link](../payments/get_payment_schema.md) for more information about this request.
 
 ### error_page
 
@@ -96,7 +96,7 @@ User inputs payment credentials, such as `phone_number` if payment is Bmobile/Ou
 
 The terminal system sends a request to the iumiCash server at `POST /api/v1/payments/check-credentials`.
 
-See [This link](/payments/check_credentials/) for more information about this request.
+See [This link](../payments/check_credentials.md) for more information about this request.
 
 ### insert_money
 
@@ -104,18 +104,18 @@ Terminal is waiting for inserting user money. Trigger to stop waiting is press "
 
 ### calculate_amount_and_fees
 
-Since the terminal system knows the policy of calculating all payment fees ([Fees policies](/fees/policies)), 
+Since the terminal system knows the policy of calculating all payment fees ([Fees policies](../fees/policies.md)), 
 the terminal can display a list of fees every time a banknote is entered.
 
 ### send_payment_request
 
 The terminal system sends a request to the iumiCash server at `POST /api/v1/transactions/send-payment`.
 
-See [This link](/payments/send_payment/) for more information about this request.
+See [This link](../transactions/send_payment.md) for more information about this request.
 
 ### successful_send_payment_request
 
-If iumiCash responded with `201 Created` request and the transaction status is `Success` (See [*All Transaction Statuses*](/transactions/statuses)), 
+If iumiCash responded with `201 Created` request and the transaction status is `Success` (See [*All Transaction Statuses*](../transactions/statuses.md)), 
 then the terminal shows the details of the successfully 
 completed transaction and proceeds to print the receipt
 
@@ -124,14 +124,14 @@ completed transaction and proceeds to print the receipt
 If for some reason the iumiCash server did not respond or returned the status not `Success`, 
 the terminal must show the details of the transaction and print a receipt, 
 according to which the user will be able to refund the money for the unsuccessful transaction 
-(More about this: [Cheque refund](/payments/cheque_generation/#cheque_refund)). At this time, the terminal system should send a request to the 
+(More about this: [Cheque refund](../payments/cheque_generation.md#cheque-refund)). At this time, the terminal system should send a request to the 
 iumiCash server until it is convinced of the finiteness of the transaction.
 
 !!! note
-    Please, pay attention to [idempotency](/idempotency), while terminal system is sending the request.
+    Please, pay attention to [idempotency](../idempotency.md), while terminal system is sending the request.
 
 ### print_cheque
 
 Prints cheque using `cheque_content` from [successful_send_payment_request](#successful_send_payment_request).
 
-For more details, see [Cheque generation](/payments/cheque_generation)
+For more details, see [Cheque generation](../payments/cheque_generation.md)

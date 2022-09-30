@@ -110,4 +110,4 @@ taking into account the deduction of all commissions, cashback, etc. from the am
 
 ##Policies
 
-This page [Policies](/fees/policies) is describing how to communicate with these rule parameters.
+This page [Policies](../fees/policies.md) is describing how to communicate with these rule parameters.

@@ -29,13 +29,13 @@ Deposit money request.
     `username` *string* **required**
     :    User's username.
 
-    `amount` *Decimal* **required**
+    `amount` *decimal* **required**
     :    Deposit amount.
 
     `system_transaction_id` *string* **required**
     :    Terminal's internal `transaction_id`.
 
-    `terminal_id` *UUID* **required**
+    `terminal_id` *string* **required**
     :    From which terminal making deposit request.
 
     `fees` [*object*](#fees) **required**
@@ -55,23 +55,9 @@ Deposit money request.
     `created_at` *datetime*
     :    Created time of the transaction in ISO format.
 
-    `cheque_content` [*object*](#cheque-content)
-    :    Cheque content can be one of follows:
-    
-         * `created_at`
-         * `description`
-         * `system_transaction_id`
-         * `transaction_id`
-         * `terminal_id`
-         * `internal_fee`
-         * `external_fee`
-         * `total`
+    `cheque_content` *list of [*cheque field*](#cheque-field)*
+    :    Cheque fields that rendered by terminal.
 
-    :   !!! info
-            Each parameter from `cheque_content` has the structure with the next format:
-    
-            * `label`: Name of the field. Usually displayed on the left side
-            * `value`: Formatted value of the field. Usually displayed on the right side
 
 ### Examples
 
@@ -90,13 +76,11 @@ Deposit money request.
         {
           "username": "fshevchenko",
           "amount": "10.00",
-          "system_transaction_id": "31212",
+          "system_transaction_id": "123456",
           "terminal_id": "190AB",
           "fees": {
-            "internal_fee": 120,
-            "external_fee": 100,
-            "internal_cashback": 0,
-            "external_cashback": 10
+            "internal_fee": 10,
+            "internal_cashback": 0
           }
         }
         '
@@ -113,68 +97,58 @@ Deposit money request.
             ```bash
             {
               "transaction_id": "390IDFE2",
-              "system_transaction_id": "31212",
+              "system_transaction_id": "123456",
               "created_at": "2022-05-23T12:36:23",
-              "cheque_content": {
-                "created_at": {
+              "cheque_content": [
+                {
                   "label": "Created At",
-                  "value": "23 May 2022 at 12:36"
+                  "value": "23 May 2022 at 12:36",
+                  "position": 1,
+                  "section": "main"
                 },
-                "description": {
+                {
                   "label": "Description",
-                  "value": "Cash In for @fshevchenko account"
+                  "value": "Cash In for @fshevchenko account",
+                  "position": 2,
+                  "section": "main"
                 },
-                "transaction_id": {
+                {
                   "label": "iumiCash Transaction",
-                  "value": "390IDFE2"
+                  "value": "390IDFE2",
+                  "position": 3,
+                  "section": "main"
                 },
-                "system_transaction_id": {
+                {
                   "label": "Terminal transaction",
-                  "value": "390IDFE2"
+                  "value": "123456",
+                  "position": 4,
+                  "section": "main"
                 },
-                "terminal_id": {
+                {
                   "label": "Terminal",
-                  "value": "190AB"
+                  "value": "190AB",
+                  "position": 5,
+                  "section": "main"
                 },
-                "internal_fee": {
-                  "label": "Fee 1%",
-                  "value": "0.10 $SBD"
+                {
+                  "label": "iumiCash fee",
+                  "value": "0.10 $SBD",
+                  "position": 6,
+                  "section": "total"
                 },
-                "total": {
+                {
+                  "label": "Amount",
+                  "value": "9.90 $SBD",
+                  "position": 7,
+                  "section": "total"
+                },
+                {
                   "label": "Total",
-                  "value": "10.00 $SBD"
+                  "value": "10.00 $SBD",
+                  "position": 8,
+                  "section": "total"
                 }
-              }
-            }
-            ```
-
-???+ failure "Username not exist"
-
-    === "Request"
-
-        Example request with cURL. You can make this request in any programming language.
-
-        ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/unexist/ \
-        -H "Authorization: Basic <base64 encoded username:password>"
-        ```
-
-    === "Response"
-
-        When username not exist, you will see error message. 
-
-        !!! Tip
-            [Here](#) you can find more possible errors.
-
-        === "Status code"
-            `HTTP 404 Not Found`
-
-        === "Response body"
-            ```bash
-            {
-                "error": "not_exist",
-                "description": "Username not exist",
-                "field_errors": []
+              ]
             }
             ```
 
@@ -185,7 +159,20 @@ Deposit money request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/my_username/
+        curl -v -X GET https://terminal-api.iumi.cash/api/v1/transactions/cash_in/
+        -H "Content-Type: application/json" \
+        -d ' \
+        {
+          "username": "fshevchenko",
+          "amount": "10.00",
+          "system_transaction_id": "123456",
+          "terminal_id": "190AB",
+          "fees": {
+            "internal_fee": 10,
+            "internal_cashback": 0
+          }
+        }
+        '
         ```
 
     === "Response"
@@ -193,7 +180,7 @@ Deposit money request.
         If you not provide authentication header, you will see error message.
 
         !!! Tip
-            [Here](#) you can find more possible errors.
+            See more [possible errors].
 
         === "Status code"
             `HTTP 403 Forbidden`
@@ -212,6 +199,26 @@ Deposit money request.
 
 Request and response objects
 
+### Cheque field
+
+???+ info "Description"
+
+    `label` *string*
+    :    Label of the field that will be rendered on the cheque.
+
+    `value` *string*
+    :    Value of the field that will be rendered on the cheque.
+
+    `position` *integer*
+    :    Position of the field on cheque.
+
+    `section` *enum*
+    :    Section of the field. This value shows specific section of field. Can be one of follows:
+        
+        * `main`
+        * `total`
+
+
 ### Currencies
 
 ???+ info "Description"
@@ -225,6 +232,12 @@ Request and response objects
 
 ???+ info "Description"
 
-    Fees.
+    `internal_fee` *integer*
+    :    Internal fee amount.
 
-[idempotency]: /idempotency/
+    `internal_cashback` *integer*
+    :    Internal cashback amount.
+
+
+[idempotency]: ../idempotency.md
+[possible errors]: ../responses.md#failed-requests

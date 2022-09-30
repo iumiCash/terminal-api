@@ -9,7 +9,7 @@ Get transaction status request.
 !!! tip
     `system_transaction_id` is a terminal system transaction identifier.
     This parameter is used in requests such as 
-    [*Cash In*](/transactions/cash_in) and [*Pay for service*](/transactions/send_payment) requests.
+    [*Cash In*](../transactions/cash_in.md) and [*Pay for service*](../transactions/send_payment.md) requests.
 
 ### Headers
 
@@ -38,7 +38,7 @@ Get transaction status request.
 
     :    Cheque content can be one of follows:
     
-    `status` [*enum*](/transactions/statuses) 
+    `status` [*enum*](../transactions/statuses.md) 
 
     :    Transaction status. Can be one of follows:
 

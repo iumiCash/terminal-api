@@ -54,7 +54,7 @@ The user enters username and clicks on the "Next" button
 
 The terminal system sends a request to the iumiCash server at `GET /api/v1/users/<username:str>/`.
 
-See [This link](/users/retrieve/) for more information about this request.
+See [This link](../users/retrieve.md) for more information about this request.
 
 ### show_username_info
 
@@ -82,7 +82,7 @@ The client is shown the final information about the inserted data, total sum and
 Loading is also output to get the status and details of the transaction.
 In parallel, the terminal system sends a CashIn request to the iumiCash backend.
 
-See [cash in transaction](/transactions/cash_in/) for request details.
+See [cash in transaction](../transactions/cash_in.md) for request details.
 
 ### successful_deposit_request
 
@@ -96,4 +96,4 @@ If transaction failed, terminal displays error details.
 
 Prints cheque using `cheque_content` from [successful deposit request](#successful_deposit_request).
 
-For more details, see [Cheque generation](/cash_in/cheque_generation)
+For more details, see [Cheque generation](../cash_in/cheque_generation.md)

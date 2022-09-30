@@ -54,7 +54,7 @@ Pay for service request.
 
     :    Created time of the transaction in ISO format.
 
-    `status` [*enum*](/transactions/statuses)
+    `status` [*enum*](../transactions/statuses.md)
 
     :    Transaction status. Can be one of follows:
 
@@ -192,7 +192,7 @@ Pay for service request.
 !!! warning "Internal Error Case"
     Due to the fact that users have already deposited money and the terminal cannot return them, 
     it is necessary to ensure that payment for the service will be made as soon as possible 
-    ([*the ability to check the transaction status*](/transactions/get-transaction-status)). 
+    ([*the ability to check the transaction status*](../transactions/status_by_external_id.md)). 
     That is, if the service cannot be paid with the current credentials or because of other reasons, 
     then the user will be able to get the money back at the iumiCash trading office when providing a check, 
     that specifies the ID of the unsuccessful transaction.
@@ -256,4 +256,4 @@ Request and response objects
     * Pending
     * Failed
 
-[idempotency]: /idempotency/
+[idempotency]: ../idempotency.md

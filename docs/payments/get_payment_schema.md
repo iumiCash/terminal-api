@@ -7,7 +7,7 @@ Deposit money request.
 `GET /api/v1/payments/get-payment-schema/<key>`
 
 !!! tip
-    `key` query parameter is payment type. See [Payment types](/payments/get-actual-payments) for more details.
+    `key` query parameter is payment type. See [Payment types](../payments/get_actual_payments.md) for more details.
 
 ### Headers
 

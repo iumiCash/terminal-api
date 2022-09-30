@@ -107,6 +107,10 @@ This is the json values code that the terminal renders after inserting `cheque_c
     <p class="row-item_value">0.10 $SBD</p>
   </div>
   <div class="row-item">
+    <p class="row-item_text">Amount</p>
+    <p class="row-item_value">9.90 $SBD</p>
+  </div>
+  <div class="row-item">
     <p class="row-item_text">Total:</p>
     <p class="row-item_value">10.00 $SBD</p>
   </div>

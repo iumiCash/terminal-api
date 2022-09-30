@@ -23,9 +23,9 @@ To get a list of commissions for all types of services, you need send request:
 
 ???+ success "Response"
 
-    `fees` *list of [fees](/fees/fees)*
+    `fees` *list of [fees](../fees/fees.md)*
     :    Array of all service fees
 
 !!! note
-    See [*Fees*](/fees/fees) page for more details about `fees` value element.
+    See [*Fees*](../fees/fees.md) page for more details about `fees` value element.
 
