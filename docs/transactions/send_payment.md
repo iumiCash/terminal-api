@@ -4,7 +4,7 @@
 
 Pay for service request.
 
-`POST /api/v1/transactions/send_payment/`
+`POST /api/v1/transactions/send-payment/`
 
 
 ### Headers
@@ -91,6 +91,7 @@ Pay for service request.
         ```bash
         curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/send_payment/ \
         -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
         {
           "key": "bmobile",
@@ -165,6 +166,7 @@ Pay for service request.
 
         ```bash
         curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/unexist/ \
+        -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -H "Authorization: Basic <base64 encoded username:password>"
         ```
 

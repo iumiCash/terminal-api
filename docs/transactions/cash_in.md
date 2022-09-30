@@ -32,6 +32,9 @@ Deposit money request.
     `amount` *Decimal* **required**
     :    Deposit amount.
 
+    `system_transaction_id` *string* **required**
+    :    Terminal's internal `transaction_id`.
+
     `terminal_id` *UUID* **required**
     :    From which terminal making deposit request.
 
@@ -44,19 +47,20 @@ Deposit money request.
 ???+ success "Response"
 
     `transaction_id` *UUID* **unique**
-
     :    iumiCash transaction identifier. You can use it later to check transaction details.
 
-    `created_at` *datetime*
+    `system_transaction_id` *string* **unique**
+    :    Terminal's internal transaction_id.
 
+    `created_at` *datetime*
     :    Created time of the transaction in ISO format.
 
-    `cheque_content` *object* 
-
+    `cheque_content` [*object*](#cheque-content)
     :    Cheque content can be one of follows:
     
          * `created_at`
          * `description`
+         * `system_transaction_id`
          * `transaction_id`
          * `terminal_id`
          * `internal_fee`
@@ -78,32 +82,69 @@ Deposit money request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/users/john_doe/ \
+        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/cash_in/ \
+        -H "Content-Type: application/json" \
         -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
         {
           "username": "fshevchenko",
           "amount": "10.00",
-          "internal_fee": "0.10",
-          "terminal_id": "190AB"
+          "system_transaction_id": "31212",
+          "terminal_id": "190AB",
+          "fees": {
+            "internal_fee": 120,
+            "external_fee": 100,
+            "internal_cashback": 0,
+            "external_cashback": 10
+          }
         }
         '
         ```
 
     === "Response"
 
-        A successful request returns the `HTTP 200 OK` status code and a JSON response body.
+        A successful request returns the `HTTP 201 Created` status code and a JSON response body.
 
         === "Status code"
-            `HTTP 200 OK`
+            `HTTP 201 Created`
 
         === "Response body"
             ```bash
             {
-              "username": "john_doe",
-              "first_name": "John",
-              "last_name": "Doe",
-              "currency_code": "NZD"
+              "transaction_id": "390IDFE2",
+              "system_transaction_id": "31212",
+              "created_at": "2022-05-23T12:36:23",
+              "cheque_content": {
+                "created_at": {
+                  "label": "Created At",
+                  "value": "23 May 2022 at 12:36"
+                },
+                "description": {
+                  "label": "Description",
+                  "value": "Cash In for @fshevchenko account"
+                },
+                "transaction_id": {
+                  "label": "iumiCash Transaction",
+                  "value": "390IDFE2"
+                },
+                "system_transaction_id": {
+                  "label": "Terminal transaction",
+                  "value": "390IDFE2"
+                },
+                "terminal_id": {
+                  "label": "Terminal",
+                  "value": "190AB"
+                },
+                "internal_fee": {
+                  "label": "Fee 1%",
+                  "value": "0.10 $SBD"
+                },
+                "total": {
+                  "label": "Total",
+                  "value": "10.00 $SBD"
+                }
+              }
             }
             ```
 

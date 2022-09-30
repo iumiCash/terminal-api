@@ -43,6 +43,7 @@ flowchart TD
     click error_invalid_credentials href "#error_page";
     click insert_money href "#insert_money";
     click calculate_amount_and_fees href "#calculate_amount_and_fees";
+    click send_payment_request href "#send_payment_request";
     click successful_send_payment_request href "#successful_send_payment_request";
     click error_send_payment_request href "#error_page";
     click print_cheque href "#print_cheque";
@@ -106,6 +107,12 @@ Terminal is waiting for inserting user money. Trigger to stop waiting is press "
 Since the terminal system knows the policy of calculating all payment fees ([Fees policies](/fees/policies)), 
 the terminal can display a list of fees every time a banknote is entered.
 
+### send_payment_request
+
+The terminal system sends a request to the iumiCash server at `POST /api/v1/transactions/send-payment`.
+
+See [This link](/payments/send_payment/) for more information about this request.
+
 ### successful_send_payment_request
 
 The terminal system sends a request to the iumiCash server at `POST /api/v1/transactions/send-payment`.
@@ -114,3 +121,6 @@ See [This link](/payments/send_payment/) for more information about this request
 
 ### print_cheque
 
+Prints cheque using `cheque_content` from [successful_send_payment_request](#successful_send_payment_request).
+
+For more details, see [Cheque generation](/payments/cheque_generation)
