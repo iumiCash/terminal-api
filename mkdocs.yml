@@ -86,14 +86,15 @@ nav:
       - Payments: daily/payments.md
       - Constants: daily/constants.md
   - Transactions:
+      - Cash In deposit: transactions/cash_in.md
+      - Pay For Service: transactions/send_payment.md
       - Statuses: transactions/statuses.md
       - Status by external id: transactions/status_by_external_id.md
       - Status by internal id: transactions/status_by_internal_id.md
-      - Cash In deposit: transactions/cash_in.md
-      - Pay For Service: transactions/send_payment.md
   - Payments:
       - Payments - Introduction: payments/index.md
-      - Payment Schema: payments/get_payment_schema.md
+      - Check credentials: payments/check_credentials.md
+      - Payment schema: payments/get_payment_schema.md
       - Flow diagram: payments/flow.md
       - Cheque generation: payments/cheque_generation.md
       - Daily requests: daily/payments.md

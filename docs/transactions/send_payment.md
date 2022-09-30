@@ -1,10 +1,13 @@
 # Pay for service
 
+!!! danger
+    WIP
+
 ## Pay for service request API
 
 Pay for service request.
 
-`POST /api/v1/transactions/send-payment/`
+`POST /api/v1/transactions/payments/`
 
 
 ### Headers
@@ -29,7 +32,7 @@ Pay for service request.
     `key` *string* **required**
     :    Payment service type.
 
-    `credentials` *object* **required**
+    `credentials` [*object*][credentials] **required**
     :    Payment details of key service.
 
     `amount` *decimal* **required**
@@ -38,7 +41,7 @@ Pay for service request.
     `terminal_id` *UUID* **required**
     :    From which terminal making deposit request.
 
-    `fees` [*object*](#fees) **required**
+    `fees` [*object*][fee object] **required**
     :    Included fees.
 
 
@@ -62,23 +65,8 @@ Pay for service request.
          * `Pending`
          * `Failed`
 
-    `cheque_content` *object* 
-
-    :    Cheque content can be one of follows:
-    
-         * `created_at`
-         * `description`
-         * `transaction_id`
-         * `terminal_id`
-         * `internal_fee`
-         * `external_fee`
-         * `total`
-
-    :   !!! info
-            Each parameter from `cheque_content` has the structure with the next format:
-    
-            * `label`: Name of the field. Usually displayed on the left side
-            * `value`: Formatted value of the field. Usually displayed on the right side
+    `cheque_content` *list of [*cheque field*][cheque field]*
+    :    Cheque fields that will be rendered.
 
 ### Examples
 
@@ -89,7 +77,8 @@ Pay for service request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/send_payment/ \
+        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/payments/ \
+        -H "Content-Type: application/json" \
         -H "Authorization: Basic <base64 encoded username:password>" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
@@ -110,10 +99,10 @@ Pay for service request.
 
     === "Response"
 
-        A successful request returns the `HTTP 200 OK` status code and a JSON response body.
+        A successful request returns the `HTTP 201 Created` status code and a JSON response body.
 
         === "Status code"
-            `HTTP 200 OK`
+            `HTTP 201 Created`
 
         === "Response body"
             ```bash
@@ -165,20 +154,35 @@ Pay for service request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/unexist/ \
+        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/payments/ \
+        -H "Content-Type: application/json" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -H "Authorization: Basic <base64 encoded username:password>"
+        -d ' \
+        {
+          "key": "bmobile",
+          "credentials": {
+            "phone": "8509813"
+          },
+          "amount": "10.00",
+          "fees": {
+            "internal_fee": "0.10",
+            "external_fee": "0.10"
+          },
+          "terminal_id": "190AB"
+        }
+        '
         ```
 
     === "Response"
 
-        When username not exist, you will see error message. 
+        Service unavailable.
 
         !!! Tip
-            [Here](#) you can find more possible errors.
+            See more [possible errors].
 
         === "Status code"
-            `HTTP 404 Not Found`
+            `HTTP 503 Service Unavailable`
 
         === "Response body"
             ```bash
@@ -204,7 +208,23 @@ Pay for service request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/my_username/
+        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/payments/ \
+        -H "Content-Type: application/json" \
+        -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
+        -d ' \
+        {
+          "key": "bmobile",
+          "credentials": {
+            "phone": "8509813"
+          },
+          "amount": "10.00",
+          "fees": {
+            "internal_fee": "0.10",
+            "external_fee": "0.10"
+          },
+          "terminal_id": "190AB"
+        }
+        '
         ```
 
     === "Response"
@@ -212,7 +232,7 @@ Pay for service request.
         If you not provide authentication header, you will see error message.
 
         !!! Tip
-            [Here](#) you can find more possible errors.
+            See more [possible errors].
 
         === "Status code"
             `HTTP 403 Forbidden`
@@ -257,3 +277,7 @@ Request and response objects
     * Failed
 
 [idempotency]: ../idempotency.md
+[credentials]: ../payments/get_payment_schema.md#credentials
+[possible errors]: ../responses.md#failed-requests
+[fee object]: ../transactions/cash_in.md#fees
+[cheque field]: ../transactions/cash_in.md#cheque-field

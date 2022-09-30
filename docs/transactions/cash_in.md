@@ -29,7 +29,7 @@ Deposit money request.
     `username` *string* **required**
     :    User's username.
 
-    `amount` *decimal* **required**
+    `amount` [*integer*][cent integer] **required**
     :    Deposit amount.
 
     `system_transaction_id` *string* **required**
@@ -75,7 +75,7 @@ Deposit money request.
         -d ' \
         {
           "username": "fshevchenko",
-          "amount": "10.00",
+          "amount": 1000,
           "system_transaction_id": "123456",
           "terminal_id": "190AB",
           "fees": {
@@ -164,7 +164,7 @@ Deposit money request.
         -d ' \
         {
           "username": "fshevchenko",
-          "amount": "10.00",
+          "amount": 1000,
           "system_transaction_id": "123456",
           "terminal_id": "190AB",
           "fees": {
@@ -201,6 +201,8 @@ Request and response objects
 
 ### Cheque field
 
+This schema is used for render specific field on cheque.
+
 ???+ info "Description"
 
     `label` *string*
@@ -232,12 +234,13 @@ Request and response objects
 
 ???+ info "Description"
 
-    `internal_fee` *integer*
+    `internal_fee` [*integer*][cent integer]
     :    Internal fee amount.
 
-    `internal_cashback` *integer*
+    `internal_cashback` [*integer*][cent integer]
     :    Internal cashback amount.
 
 
 [idempotency]: ../idempotency.md
 [possible errors]: ../responses.md#failed-requests
+[cent integer]: ../types.md#cent-integer

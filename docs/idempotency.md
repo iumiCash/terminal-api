@@ -17,7 +17,7 @@ You can make idempotent calls any number of times without concern that the serve
     Conversely, when you omit the `RequestId` header from a request, iumiCash duplicates the request.
 
 
-??? example "Examples"
+???+ example "Examples"
 
     === "Request"
 
@@ -27,28 +27,19 @@ You can make idempotent calls any number of times without concern that the serve
             Here were are using `RequestId` idempotency key.
 
         ```bash hl_lines="4"
-        curl -v -X POST https://api.iumi.cash/api/v1/orders/ \
+        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/cash_in/ \
         -H "Content-Type: application/json" \
-        -H "Authorization: Bearer <Access-Token>" \
+        -H "Authorization: Basic <base64 encoded username:password>" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
         {
-          "external_id": "123456",
-          "items": [
-            {
-              "name": "T-shirt",
-              "description": "Brand new T-shirt",
-              "amount": {
-                "value": 100,
-                "currency_code": "USD"
-              },
-              "count": 1
-            }
-          ],
-          "application_context": {
-            "callback_url": "https://starlink.com/api/v1/iumiCash/callback/",
-            "success_url": "https://starlink.com/success.html",
-            "error_url": "https://starlink.com/error.html"
+          "username": "fshevchenko",
+          "amount": 1000,
+          "system_transaction_id": "123456",
+          "terminal_id": "190AB",
+          "fees": {
+            "internal_fee": 10,
+            "internal_cashback": 0
           }
         }
         '
@@ -58,51 +49,64 @@ You can make idempotent calls any number of times without concern that the serve
 
         A successful request returns the `HTTP 201 Created` status code and a JSON response body.
 
-        ```bash
-        {
-          "id": "42481508-af81-43b9-82dd-d47d9e040ece",
-          "external_id": "123456",
-          "created_at": "2022-09-12T13:27:09.860466",
-          "updated_at": "2022-09-12T13:27:09.860466",
-          "status": "created",
-          "client_id": "example_client_id",
-          "items": [
+        === "Status code"
+            `HTTP 201 Created`
+
+        === "Response body"
+            ```bash
             {
-              "name": "T-shirt",
-              "description": "Brand new T-shirt",
-              "amount": {
-                "value": 100,
-                "currency_code": "USD"
-              },
-              "count": 1
+              "transaction_id": "390IDFE2",
+              "system_transaction_id": "123456",
+              "created_at": "2022-05-23T12:36:23",
+              "cheque_content": [
+                {
+                  "label": "Created At",
+                  "value": "23 May 2022 at 12:36",
+                  "position": 1,
+                  "section": "main"
+                },
+                {
+                  "label": "Description",
+                  "value": "Cash In for @fshevchenko account",
+                  "position": 2,
+                  "section": "main"
+                },
+                {
+                  "label": "iumiCash Transaction",
+                  "value": "390IDFE2",
+                  "position": 3,
+                  "section": "main"
+                },
+                {
+                  "label": "Terminal transaction",
+                  "value": "123456",
+                  "position": 4,
+                  "section": "main"
+                },
+                {
+                  "label": "Terminal",
+                  "value": "190AB",
+                  "position": 5,
+                  "section": "main"
+                },
+                {
+                  "label": "iumiCash fee",
+                  "value": "0.10 $SBD",
+                  "position": 6,
+                  "section": "total"
+                },
+                {
+                  "label": "Amount",
+                  "value": "9.90 $SBD",
+                  "position": 7,
+                  "section": "total"
+                },
+                {
+                  "label": "Total",
+                  "value": "10.00 $SBD",
+                  "position": 8,
+                  "section": "total"
+                }
+              ]
             }
-          ],
-          "application_context": {
-            "callback_url": "https://starlink.com/api/v1/iumiCash/callback/"
-            "success_url": "https://starlink.com/success.html",
-            "error_url": "https://starlink.com/error.html"
-          },
-          "links": [
-            {
-              "link": "https://api.iumi.cash/api/v1/orders/42481508-af81-43b9-82dd-d47d9e040ece/",
-              "rel": "self",
-              "method": "get"
-            },
-            {
-              "link": "https://api.iumi.cash/checkout/42481508-af81-43b9-82dd-d47d9e040ece/",
-              "rel": "approve",
-              "method": "get"
-            },
-            {
-              "link": "https://api.iumi.cash/api/v1/orders/42481508-af81-43b9-82dd-d47d9e040ece/capture/",
-              "rel": "capture",
-              "method": "post"
-            },
-            {
-              "link": "https://api.iumi.cash/api/v1/orders/42481508-af81-43b9-82dd-d47d9e040ece/cancel/",
-              "rel": "cancel",
-              "method": "post"
-            }
-          ]
-        }
-        ```
+            ```

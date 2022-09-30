@@ -12,17 +12,12 @@ taking into account the deduction of all commissions, cashback, etc. from the am
 ???+ info "Fee object"
 
     `key` *string* **unique**
-    
     :    Transaction type key
 
-    `max_amount` [*integer*](#cent-integer)
-    
+    `max_amount` [*integer*][cent integer]
     :    Transaction maximum amount
-    :   !!! note
-            This value is stored as cents.
 
     `rules` *list of [*rule*](#rule)*
-    
     :    This field describes which rule element should be applied to the entered amount. Fields of rules element:
     
          * `less_than`
@@ -41,73 +36,55 @@ taking into account the deduction of all commissions, cashback, etc. from the am
             See [*rule*](#rule) for more details.
 
 
-
 ### Rule
 
 ??? success "Rule object"
 
-    `less_than` [*integer*](#cent-integer)
-    
+    `less_than` [*integer*][cent integer]
     :   The amount need to be less than or equal the value of this field to accept this rule object.
-    :   !!! note
-            This value is stored as cents.
 
-    `more_than` [*integer*](#cent-integer)
-    
+    `more_than` [*integer*][cent integer]
     :   The amount need to be more than the value of this field to accept this rule object.
-    :   !!! note ""
-             This value is stored as cents.
 
     `external_fee_in_percents` *decimal*   
-
     :    Commission charged by a third party. 
          The commission value is calculated as a percentage of the transaction amount.
 
      `internal_fee_in_percents` *decimal*   
-
     :    Commission charged by iumiCash. 
          The commission value is calculated as a percentage of the transaction amount.   
    
-     `external_fee_fix` *integer*   
-
+     `external_fee_fix` [*integer*][cent integer]
     :    Commission charged by a third party.
          The commission is charged as a fixed value regardless of the transaction amount.
-    :   !!! note ""
-             This value is stored as cents.
 
-     `internal_fee_fix` *integer*   
-
+     `internal_fee_fix` [*integer*][cent integer]
     :    Commission charged by iumiCash.
          The commission is charged as a fixed value regardless of the transaction amount.
-    :   !!! note
-             This value is stored as cents.
 
      `external_cashback_in_percents` *decimal*   
-
     :   Cashback returned by a third party. The cashback value is calculated as a percentage of the transaction amount.
-    :   !!! note
+    :   !!! note ""
              This value is negative decimal by default, if exists and not equal 0. 
 
      `internal_cashback_in_percents` *decimal*   
-
     :   Cashback returned by iumiCash. The cashback value is calculated as a percentage of the transaction amount.
-    :   !!! note
+    :   !!! note ""
              This value is negative decimal by default, if exists and not equal 0. 
 
-     `external_cashback_fix` *integer*   
-
+     `external_cashback_fix` [*integer*][cent integer]
     :   Cashback returned by a third party. The cashback is charged as a fixed value regardless of the transaction amount.
-    :   !!! note
+    :   !!! note ""
              * This value is negative decimal by default, if exists and not equal 0. 
-             * This value is stored as cents.
 
-     `internal_cashback_fix` *integer*   
-
+     `internal_cashback_fix` [*integer*][cent integer]
     :   Cashback returned by iumiCash. The cashback is charged as a fixed value regardless of the transaction amount.
-    :   !!! note
+    :   !!! note ""
              * This value is negative decimal by default, if exists and not equal 0. 
-             * This value is stored as cents.
 
-##Policies
+## Policies
 
-This page [Policies](../fees/policies.md) is describing how to communicate with these rule parameters.
+[Policies](../fees/policies.md) page is describing how to communicate with these rule parameters.
+
+
+[cent integer]: ../types.md#cent-integer

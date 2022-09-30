@@ -76,7 +76,7 @@ The user clicked on the payment.
 
 ### payment_schema_request
 
-The terminal system sends a request to the iumiCash server at `GET /api/v1/payments/get-payment-schema/<key>`.
+The terminal system sends a request to the iumiCash server at `GET /api/v1/payments/schemas/<key>/`.
 
 See [This link](../payments/get_payment_schema.md) for more information about this request.
 
@@ -109,7 +109,7 @@ the terminal can display a list of fees every time a banknote is entered.
 
 ### send_payment_request
 
-The terminal system sends a request to the iumiCash server at `POST /api/v1/transactions/send-payment`.
+The terminal system sends a request to the iumiCash server at `POST /api/v1/transactions/payments/`.
 
 See [This link](../transactions/send_payment.md) for more information about this request.
 
