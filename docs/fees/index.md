@@ -27,5 +27,5 @@ To get a list of commissions for all types of services, you need send request:
     :    Array of all service fees
 
 !!! note
-    See [*Fees*](/fees/fees) page for more details about `fee` value element.
+    See [*Fees*](/fees/fees) page for more details about `fees` value element.
 

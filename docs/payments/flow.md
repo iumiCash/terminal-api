@@ -45,7 +45,7 @@ flowchart TD
     click calculate_amount_and_fees href "#calculate_amount_and_fees";
     click send_payment_request href "#send_payment_request";
     click successful_send_payment_request href "#successful_send_payment_request";
-    click error_send_payment_request href "#error_page";
+    click error_send_payment_request href "#error_send_payment_request";
     click print_cheque href "#print_cheque";
     click error_page href "#error_page";
 ```
@@ -115,9 +115,20 @@ See [This link](/payments/send_payment/) for more information about this request
 
 ### successful_send_payment_request
 
-The terminal system sends a request to the iumiCash server at `POST /api/v1/transactions/send-payment`.
+If iumiCash responded with `201 Created` request and the transaction status is `Success` (See [*All Transaction Statuses*](/transactions/statuses)), 
+then the terminal shows the details of the successfully 
+completed transaction and proceeds to print the receipt
 
-See [This link](/payments/send_payment/) for more information about this request.
+### error_send_payment_request
+
+If for some reason the iumiCash server did not respond or returned the status not `Success`, 
+the terminal must show the details of the transaction and print a receipt, 
+according to which the user will be able to refund the money for the unsuccessful transaction 
+(More about this: [Cheque refund](/payments/cheque_generation/#cheque_refund)). At this time, the terminal system should send a request to the 
+iumiCash server until it is convinced of the finiteness of the transaction.
+
+!!! note
+    Please, pay attention to [idempotency](/idempotency), while terminal system is sending the request.
 
 ### print_cheque
 
