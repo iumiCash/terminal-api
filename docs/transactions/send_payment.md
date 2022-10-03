@@ -229,8 +229,8 @@ Pay for service request.
         === "Response body"
             ```bash
             {
-                "error": "payment_service_not_available",
-                "description": "Service Bmobile not available",
+                "error": "payment_service_unavailable",
+                "description": "Service Bmobile in unavailable",
                 "field_errors": []
             }
             ```
