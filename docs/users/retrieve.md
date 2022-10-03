@@ -32,6 +32,7 @@ Retrieve user by `username`
     `currency_code` *enum*. See [available currencies](#currencies).
     :    Currency of account.
 
+
 ### Examples
 
 ???+ success "Successful request"
