@@ -123,7 +123,7 @@ This is the json values code that the terminal renders after inserting `cheque_c
   </div>
   <div class="row-item">
     <p class="row-item_text">Terminal Transaction:</p>
-    <p class="row-item_value">31212</p>
+    <p class="row-item_value">123456</p>
   </div>
   <div class="row-item">
     <p class="row-item_text">Terminal:</p>
@@ -131,7 +131,7 @@ This is the json values code that the terminal renders after inserting `cheque_c
   </div>
   <div class="separator"></div>
   <div class="row-item">
-    <p class="row-item_text">Fee 1%:</p>
+    <p class="row-item_text">iumiCash fee:</p>
     <p class="row-item_value">0.10 $SBD</p>
   </div>
   <div class="row-item">
