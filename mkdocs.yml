@@ -93,7 +93,8 @@ nav:
       - Status by internal id: transactions/status_by_internal_id.md
   - Payments:
       - Payments - Introduction: payments/index.md
-      - Available payments: payments/available_payments.md
+      - Payment categories: payments/categories.md
+      - Available payments: payments/payments.md
       - Check credentials: payments/check_credentials.md
       - Payment schema: payments/get_payment_schema.md
       - Flow diagram: payments/flow.md

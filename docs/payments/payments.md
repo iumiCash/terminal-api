@@ -4,7 +4,7 @@
 
 Get available payments request.
 
-`GET /api/v1/payments/`
+`GET /api/v1/payments/payments/`
 
 ### Headers
 
@@ -39,7 +39,7 @@ Get available payments request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/ \
+        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/payments/ \
         -H "Authorization: Basic <base64 encoded username:password>"
         ```
 
@@ -84,7 +84,7 @@ Get available payments request.
             You can filter available payments. For example, by `category`.
         
         ```bash hl_lines="1"
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/?category=mobile \
+        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/payments/?category=mobile \
         -H "Authorization: Basic <base64 encoded username:password>"
         ```
 
@@ -114,7 +114,7 @@ Get available payments request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/
+        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/payments/
         ```
 
     === "Response"
@@ -148,11 +148,16 @@ Request and response objects
     `key` *string* **unique**
     :    Payment's unique identifier.
 
-    `category` *string* 
-    :    Payment's category.
+    `category_id` *UUID* 
+    :    Payment's category identifier.
+
+    `category_name` *string* 
+    :    Payment's category name.
 
     `description` *string*
     :    Description of payment.
 
     `image_url` *URL string*
     :    Payment's image url.
+
+[possible errors]: ../responses.md#failed-requests

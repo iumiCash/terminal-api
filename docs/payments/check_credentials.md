@@ -146,3 +146,5 @@ Check credentials request.
               "field_errors": []
             }
             ```
+
+[possible errors]: ../responses.md#failed-requests
