@@ -1,0 +1,50 @@
+{
+  "key": "bmobile",
+  "description": "Bmobile service",
+  "category_id": "8c51cb48-624d-4706-ba6a-2608f389d6a2",
+  "category": "Mobile",
+  "image_url": "https://example.com/image.jpg",
+  "schema": {
+    "phone": {
+      "label": "Phone number",
+      "placeholder": "",
+      "defaultValue": null,
+      "type": "phone",
+      "keyboardType": "number-pad",
+      "includedCountries": [
+        "SB"
+      ],
+      "validators": {
+        "required": true
+      },
+      "credentials": true,
+      "order": 0
+    },
+    "amount": {
+      "label": "Top Up Amount (SBD)",
+      "placeholder": "",
+      "defaultValue": 0,
+      "type": "amount",
+      "keyboardType": "numeric",
+      "includedCountries": null,
+      "validators": {
+        "required": true,
+        "less_than": 1000,
+        "more_than": 1
+      },
+      "order": 1
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Bmobile Top Up",
+      "defaultValue": "Bmobile Top Up",
+      "type": "input",
+      "keyboardType": "default",
+      "includedCountries": null,
+      "validators": {
+        "required": false
+      },
+      "order": 2
+    }
+  }
+}

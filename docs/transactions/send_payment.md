@@ -30,7 +30,7 @@ Pay for service request.
     :    Payment service type.
 
     `credentials` [*object*][credentials] **required**
-    :    Payment details of key service.
+    :    Payment credentials. See [credentials] for more information.
 
     `amount` [*integer*][cent integer] **required**
     :    Deposit amount.
@@ -331,7 +331,7 @@ Request and response objects
     * Failed
 
 [idempotency]: ../idempotency.md
-[credentials]: ../payments/get_payment_schema.md#credentials
+[credentials]: ../payments/payment_schema.md#credentials
 [possible errors]: ../responses.md#failed-requests
 [fee object]: ../transactions/cash_in.md#fees
 [cheque field]: ../transactions/cash_in.md#cheque-field

@@ -1,31 +1,161 @@
 [
-  {
-    "key": "solomon_power",
-    "rules": [
-      {
-        "less_than": 10100,
-        "more_than": 0,
-        "external_fee_in_percents": 0,
-        "internal_fee_in_percents": 0,
-        "external_fee_fix": 125,
-        "internal_fee_fix": 175,
-        "external_cashback_in_percents": 0,
-        "internal_cashback_in_percents": 0,
-        "external_cashback_fix": 0,
-        "internal_cashback_fix": 0
-      },
-      {
-        "less_than": 1000000,
-        "more_than": 10100,
-        "external_fee_in_percents": 0,
-        "internal_fee_in_percents": 0,
-        "external_fee_fix": 125,
-        "internal_fee_fix": 175,
-        "external_cashback_in_percents": 0,
-        "internal_cashback_in_percents": 0,
-        "external_cashback_fix": 0,
-        "internal_cashback_fix": 0
+  [
+    {
+      "key": "bmobile",
+      "description": "Bmobile service",
+      "category_id": "8c51cb48-624d-4706-ba6a-2608f389d6a2",
+      "category": "Mobile",
+      "image_url": "https://example.com/image.jpg",
+      "schema": {
+        "phone": {
+          "label": "Phone number",
+          "placeholder": "",
+          "defaultValue": null,
+          "type": "phone",
+          "keyboardType": "number-pad",
+          "includedCountries": [
+            "SB"
+          ],
+          "validators": {
+            "required": true
+          },
+          "credentials": true,
+          "order": 0
+        },
+        "amount": {
+          "label": "Top Up Amount (SBD)",
+          "placeholder": "",
+          "defaultValue": 0,
+          "type": "amount",
+          "keyboardType": "numeric",
+          "includedCountries": null,
+          "validators": {
+            "required": true,
+            "less_than": 1000,
+            "more_than": 1
+          },
+          "order": 1
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "Bmobile Top Up",
+          "defaultValue": "Bmobile Top Up",
+          "type": "input",
+          "keyboardType": "default",
+          "includedCountries": null,
+          "validators": {
+            "required": false
+          },
+          "order": 2
+        }
       }
-    ]
+    },
+    {
+      "key": "satsol",
+      "description": "Satsol service",
+      "category_id": "a9fa2eb9-ee13-4707-aa27-533091b31b88",
+      "category": "Internet",
+      "image_url": "https://example.com/image.jpg",
+      "schema": {
+        "phone": {
+          "label": "Phone number",
+          "placeholder": "",
+          "defaultValue": null,
+          "type": "phone",
+          "keyboardType": "number-pad",
+          "includedCountries": [
+            "SB"
+          ],
+          "validators": {
+            "required": true
+          },
+          "credentials": true,
+          "order": 0
+        },
+        "amount": {
+          "label": "Top Up Amount (SBD)",
+          "placeholder": "",
+          "defaultValue": 0,
+          "type": "amount",
+          "keyboardType": "numeric",
+          "includedCountries": null,
+          "validators": {
+            "required": true,
+            "less_than": 1000,
+            "more_than": 1
+          },
+          "order": 1
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "Bmobile Top Up",
+          "defaultValue": "Bmobile Top Up",
+          "type": "input",
+          "keyboardType": "default",
+          "includedCountries": null,
+          "validators": {
+            "required": false
+          },
+          "order": 2
+        }
+      }
+    }
+  ],
+  {
+    "schema": {
+      "phone": {
+        "label": "Phone number",
+        "placeholder": "",
+        "defaultValue": null,
+        "type": "phone",
+        "keyboardType": "number-pad",
+        "includedCountries": [
+          "SB"
+        ],
+        "validators": {
+          "required": true
+        },
+        "credentials": true,
+        "order": 0
+      },
+      "amount": {
+        "label": "Top Up Amount (SBD)",
+        "placeholder": "",
+        "defaultValue": 0,
+        "type": "amount",
+        "keyboardType": "numeric",
+        "includedCountries": null,
+        "validators": {
+          "required": true,
+          "less_than": 1000,
+          "more_than": 1
+        },
+        "order": 1
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Bmobile Top Up",
+        "defaultValue": "Bmobile Top Up",
+        "type": "input",
+        "keyboardType": "default",
+        "includedCountries": null,
+        "validators": {
+          "required": false
+        },
+        "order": 2
+      }
+    }
+  },
+  {
+    "<field_name>": {
+      "label": "Displaying label of this field",
+      "placeholder": "Placeholder of the field.",
+      "defaultValue": "The value, which inserted to the field by default",
+      "type": "Input type. Can be: phone | amount | input | select",
+      "keyboardType": "number-pad (Only numbers) | numeric (integer field) | default (plain text). Not acceptable for `select` type",
+      "validators": "Validation field instruction. Example: less_than: 1000 (I'm not sure how to describe this correctly)",
+      "credentials": "Boolean field which marks field as credential field",
+      "order": "Where in the list is this field relative to other fields."
+    }
   }
 ]

@@ -94,18 +94,17 @@ nav:
   - Payments:
       - Payments - Introduction: payments/index.md
       - Payment categories: payments/categories.md
-      - Available payments: payments/payments.md
-      - Check credentials: payments/check_credentials.md
-      - Payment schema: payments/get_payment_schema.md
+      - Payment services: payments/payments.md
+      - Payment schema: payments/payment_schema.md
       - Flow diagram: payments/flow.md
+      - Check credentials: payments/check_credentials.md
       - Cheque generation: payments/cheque_generation.md
-      - Daily requests: daily/payments.md
   - Fees:
       - Fees - Introduction : fees/index.md
       - Fees: fees/fees.md
       - Policies: fees/policies.md
-      - Daily requests: daily/fees.md
   - Reports:
       - Reports - Introduction : reports/index.md
-      - Daily requests: daily/reports.md
+      - Cross Check report : reports/cross_check.md
+      - Consolidated report : reports/consolidated.md
   - Idempotency: idempotency.md

@@ -14,9 +14,6 @@ Generate Consolidated report.
 
 ???+ info "Header parameters"
 
-    `RequestId` *string*
-    :    Idempotency key for request. See [idempotency] for more information.
-
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
          The value is `Basic <base64string username:password>`
@@ -35,11 +32,9 @@ Generate Consolidated report.
     `date_to` *datetime* **required**
     :    Date to which generate report.
 
-    `currency` *enum* **required**
-    :    Currency.
-
     `filters` [*object*](#filters) **required**
-    :    Report filter.
+    :    Report filter. May be one of the follows:
+         * `currency`. See all currencies [*here*]()
 
 
 ### Response
