@@ -1,5 +1,7 @@
 # Daily fees
 
+You need to retrieve all fees and save them for later usage.
 
-!!! danger
-    WIP
+!!! tip
+    See [fees](../fees/index.md) for more information about request.
+
