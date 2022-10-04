@@ -92,7 +92,7 @@ Request and response objects
 
 ???+ info "Description"
 
-    `id` *UUID* **unique**
+    `id` *[ID][identifier]* **unique**
     :    Payment category's unique identifier.
 
     `name` *string* 
@@ -105,3 +105,4 @@ Request and response objects
     :    Posiiton of category.
 
 [possible errors]: ../responses.md#failed-requests
+[identifier]: ../types.md#iumicash-identifier

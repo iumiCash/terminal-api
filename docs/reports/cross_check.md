@@ -49,7 +49,7 @@ Generate Cross-Check report.
 
 ???+ success "Response"
 
-    `transaction_id` *UUID* **unique**
+    `transaction_id` *[ID][identifier]* **unique**
     :    iumiCash transaction identifier.
 
     `system_transaction_id` *string* **unique**
@@ -133,3 +133,4 @@ Request and response objects
 [idempotency]: ../idempotency.md
 [possible errors]: ../responses.md#failed-requests
 [cent integer]: ../types.md#cent-integer
+[identifier]: ../types.md#iumicash-identifier

@@ -31,7 +31,7 @@ Payment schema.
     `key` *string* **unique**
     :    Payment's unique identifier.
 
-    `category_id` *UUID* 
+    `category_id` *[ID][identifier]* 
     :    Payment's category identifier.
 
     `category_name` *string* 
@@ -338,3 +338,4 @@ For example, for payment service `bmobile` credentials will be `phone`.
 ```
 
 [possible errors]: ../responses.md#failed-requests
+[identifier]: ../types.md#iumicash-identifier

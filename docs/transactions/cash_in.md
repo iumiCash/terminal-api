@@ -46,7 +46,7 @@ Deposit money request.
 
 ???+ success "Response"
 
-    `transaction_id` *UUID* **unique**
+    `transaction_id` *[ID][identifier]* **unique**
     :    iumiCash transaction identifier. You can use it later to check transaction details.
 
     `system_transaction_id` *string* **unique**
@@ -244,3 +244,4 @@ This schema is used for render specific field on cheque.
 [idempotency]: ../idempotency.md
 [possible errors]: ../responses.md#failed-requests
 [cent integer]: ../types.md#cent-integer
+[identifier]: ../types.md#iumicash-identifier

@@ -73,6 +73,7 @@ nav:
   - Requests: requests.md
   - Responses: responses.md
   - Authorization: auth/index.md
+  - Types: types.md
   - Cash In:
       - Cash In - Introduction : cash_in/index.md
       - Flow diagram: cash_in/flow.md

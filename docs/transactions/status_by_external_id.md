@@ -26,7 +26,7 @@ Get transaction status request.
 
 ???+ success "Response"
 
-    `transaction_id` *UUID* **unique**
+    `transaction_id` *[ID][identifier]* **unique**
 
     :    iumiCash transaction identifier.
 
@@ -103,3 +103,5 @@ Get transaction status request.
           "status": "Unknown"
         }
         ```
+
+[identifier]: ../types.md#iumicash-identifier

@@ -49,7 +49,7 @@ Pay for service request.
 
 ???+ success "Response"
 
-    `transaction_id` *UUID* **unique**
+    `transaction_id` *[ID][identifier]* **unique**
 
     :    iumiCash transaction identifier. You can use it later to check transaction details.
 
@@ -336,3 +336,4 @@ Request and response objects
 [fee object]: ../transactions/cash_in.md#fees
 [cheque field]: ../transactions/cash_in.md#cheque-field
 [cent integer]: ../types.md#cent-integer
+[identifier]: ../types.md#iumicash-identifier

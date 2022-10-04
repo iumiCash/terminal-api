@@ -19,7 +19,7 @@ Get available payments services request.
 
 ???+ info "Query parameters"
 
-    `category_id` *UUID*
+    `category_id` *[ID][identifier]*
     :    You can use this query parameter to filter payments by `category`.
 
 
@@ -274,7 +274,7 @@ Request and response objects
     `key` *string* **unique**
     :    Payment's unique identifier.
 
-    `category_id` *UUID* 
+    `category_id` *[ID][identifier]* 
     :    Payment's category identifier.
 
     `category_name` *string* 
@@ -292,3 +292,4 @@ Request and response objects
 
 [possible errors]: ../responses.md#failed-requests
 [payment schema]: ../payments/payment_schema.md#schema
+[identifier]: ../types.md#iumicash-identifier
