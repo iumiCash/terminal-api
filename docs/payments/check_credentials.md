@@ -66,7 +66,7 @@ Check credentials request.
             `HTTP 200 OK`
 
         === "Response body"
-            ```bash
+            ```json
             {
               "details": "John Doe"
             }
@@ -100,7 +100,7 @@ Check credentials request.
             `HTTP 404 Not Found`
 
         === "Response body"
-            ```bash
+            ```json
             {
               "error": "not_found",
               "description": "Bmobile credentials not found",
@@ -139,7 +139,7 @@ Check credentials request.
             `HTTP 403 Forbidden`
 
         === "Response body"
-            ```bash
+            ```json
             {
               "error": "unauthotized",
               "description": "Authentication header not provided",

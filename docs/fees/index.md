@@ -44,7 +44,7 @@ To get a list of commissions for all types of services, you need send request:
             `HTTP 200 OK`
 
         === "Response body"
-            ```bash
+            ```json
             [
               {
                 "key": "solomon_power",
@@ -100,7 +100,7 @@ To get a list of commissions for all types of services, you need send request:
             `HTTP 403 Forbidden`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "unauthotized",
                 "description": "Authentication header not provided",

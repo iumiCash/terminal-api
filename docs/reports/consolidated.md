@@ -89,7 +89,7 @@ Generate Consolidated report.
             `HTTP 201 Created`
 
         === "Response body"
-            ```bash
+            ```json
             {
               "transaction_id": "390IDFE2",
               "system_transaction_id": "123456",
@@ -181,7 +181,7 @@ Generate Consolidated report.
             `HTTP 403 Forbidden`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "unauthotized",
                 "description": "Authentication header not provided",

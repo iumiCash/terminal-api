@@ -94,7 +94,7 @@ Deposit money request.
             `HTTP 201 Created`
 
         === "Response body"
-            ```bash
+            ```json
             {
               "transaction_id": "390IDFE2",
               "system_transaction_id": "123456",
@@ -186,7 +186,7 @@ Deposit money request.
             `HTTP 403 Forbidden`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "unauthotized",
                 "description": "Authentication header not provided",

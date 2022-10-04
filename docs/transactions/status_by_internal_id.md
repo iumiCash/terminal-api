@@ -65,7 +65,7 @@ Get transaction status request.
 
         A successful request returns the `HTTP 200 OK` status code and a JSON response body.
 
-        ```bash
+        ```json
         {
           "transaction_id": "390IDFE2",
           "system_transaction_id": "31212",
@@ -95,7 +95,7 @@ Get transaction status request.
 
         A successful request returns the `HTTP 404 Not Found` status code and a JSON response body.
 
-        ```bash
+        ```json
         {
           "transaction_id": "31213",
           "system_transaction_id": null,

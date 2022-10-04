@@ -48,7 +48,7 @@ This is the json values code that the terminal renders after inserting `cheque_c
             `HTTP 201 Created`
 
         === "Response body"
-            ```bash
+            ```json
             {
               "transaction_id": "390IDFE2",
               "system_transaction_id": "123456",

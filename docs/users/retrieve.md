@@ -54,7 +54,7 @@ Retrieve user by `username`
             `HTTP 200 OK`
 
         === "Response body"
-            ```bash
+            ```json
             {
               "username": "john_doe",
               "first_name": "John",
@@ -85,7 +85,7 @@ Retrieve user by `username`
             `HTTP 404 Not Found`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "not_exist",
                 "description": "Username not exist",
@@ -114,7 +114,7 @@ Retrieve user by `username`
             `HTTP 403 Forbidden`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "unauthotized",
                 "description": "Authentication header not provided",

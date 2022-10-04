@@ -68,7 +68,7 @@ Payment schema.
             `HTTP 200 OK`
 
         === "Response body"
-            ```bash
+            ```json
             {
               "key": "bmobile",
               "description": "Bmobile service",
@@ -143,7 +143,7 @@ Payment schema.
             `HTTP 404 Not Found`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "not_found",
                 "description": "Payment service 'not_exist' not found",
@@ -172,7 +172,7 @@ Payment schema.
             `HTTP 403 Forbidden`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "unauthotized",
                 "description": "Authentication header not provided",
@@ -284,7 +284,7 @@ This table shows payment service and their `credential` fields.
 
 For example, for payment service `bmobile` credentials will be `phone`.
 
-```bash hl_lines="20"
+```json hl_lines="2 8 20"
 {
   "key": "bmobile",
   "description": "Bmobile service",

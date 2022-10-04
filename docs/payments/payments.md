@@ -51,7 +51,7 @@ Get available payments services request.
             `HTTP 200 OK`
 
         === "Response body"
-            ```bash
+            ```json
             [
               {
                 "key": "bmobile",
@@ -178,7 +178,7 @@ Get available payments services request.
             `HTTP 200 OK`
 
         === "Response body"
-            ```bash
+            ```json
             [
               {
                 "key": "bmobile",
@@ -254,7 +254,7 @@ Get available payments services request.
             `HTTP 403 Forbidden`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "unauthotized",
                 "description": "Authentication header not provided",

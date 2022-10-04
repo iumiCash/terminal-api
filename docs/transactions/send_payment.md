@@ -112,7 +112,7 @@ Pay for service request.
             `HTTP 201 Created`
 
         === "Response body"
-            ```bash
+            ```json
             {
               "transaction_id": "390IDFE2",
               "system_transaction_id": "123456",
@@ -227,7 +227,7 @@ Pay for service request.
             `HTTP 400 Bad Request`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "payment_service_unavailable",
                 "description": "Service Bmobile in unavailable",
@@ -282,7 +282,7 @@ Pay for service request.
             `HTTP 403 Forbidden`
 
         === "Response body"
-            ```bash
+            ```json
             {
                 "error": "unauthotized",
                 "description": "Authentication header not provided",
