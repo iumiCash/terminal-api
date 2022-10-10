@@ -1,8 +1,8 @@
-# Payment schema request
+# Get payment service
 
-## Payment schema request API
+## Get payment service request API
 
-Payment schema.
+Payment service.
 
 `GET /api/v1/payments/services/<key:string>/`
 
@@ -34,11 +34,14 @@ Payment schema.
     `category_id` *[ID][identifier]* 
     :    Payment's category identifier.
 
-    `category_name` *string* 
+    `category` *string* 
     :    Payment's category name.
 
     `description` *string*
     :    Description of payment.
+
+    `status` [*object*](#payment-status)
+    :    Payment's status.
 
     `image_url` *URL string*
     :    Payment's image url.
@@ -46,10 +49,13 @@ Payment schema.
     `schema` [*object*](#schema)
     :    Payment schema.
 
+    `fee` [*object*](#fee)
+    :    Related fees.
+
 
 ### Examples
 
-???+ success "Successful request"
+??? success "Successful request"
 
     === "Request"
 
@@ -74,6 +80,11 @@ Payment schema.
               "description": "Bmobile service",
               "category_id": "8c51cb48-624d-4706-ba6a-2608f389d6a2",
               "category": "Mobile",
+              "status": {
+                "status": "Active",
+                "available": true,
+                "color": "#ff0000"
+              },
               "image_url": "https://example.com/image.jpg",
               "schema": {
                 "phone": {
@@ -117,11 +128,41 @@ Payment schema.
                   },
                   "order": 2
                 }
+              },
+              "fee": {
+                "key": "bmobile",
+                "max_amount": 100000,
+                "rules": [
+                  {
+                    "less_than": 10100,
+                    "more_than": 0,
+                    "external_fee_in_percents": 0,
+                    "internal_fee_in_percents": 0,
+                    "external_fee_fix": 125,
+                    "internal_fee_fix": 175,
+                    "external_cashback_in_percents": 0,
+                    "internal_cashback_in_percents": 0,
+                    "external_cashback_fix": 0,
+                    "internal_cashback_fix": 0
+                  },
+                  {
+                    "less_than": 1000000,
+                    "more_than": 10100,
+                    "external_fee_in_percents": 0,
+                    "internal_fee_in_percents": 0,
+                    "external_fee_fix": 125,
+                    "internal_fee_fix": 175,
+                    "external_cashback_in_percents": 0,
+                    "internal_cashback_in_percents": 0,
+                    "external_cashback_fix": 0,
+                    "internal_cashback_fix": 0
+                  }
+                ]
               }
             }
             ```
 
-???+ failure "Payment service does not exist"
+??? failure "Payment service does not exist"
 
     === "Request"
 
@@ -151,7 +192,7 @@ Payment schema.
             }
             ```
 
-???+ failure "Authentication header not provided"
+??? failure "Authentication header not provided"
 
     === "Request"
 
@@ -184,6 +225,83 @@ Payment schema.
 
 Request and response objects
 
+
+### Fee
+
+???+ info "Description"
+
+    `key` *string*
+    :    Transaction type key
+
+    `max_amount` [*integer*][cent integer]
+    :    Transaction maximum amount
+
+    `rules` *list of [*rule*](#rule)*
+    :    This field describes which rule element should be applied to the entered amount.
+    :   !!! info
+            To understand which rule to apply, there are fields `more_than` and `less_than`.
+            See [*rule*](#rule) for more details.
+
+
+### Rule
+
+??? info "Description"
+
+    `less_than` [*integer*][cent integer]
+    :   The amount need to be less than or equal the value of this field to accept this rule object.
+
+    `more_than` [*integer*][cent integer]
+    :   The amount need to be more than the value of this field to accept this rule object.
+
+    `external_fee_in_percents` *decimal*   
+    :    Commission charged by a third party. 
+         The commission value is calculated as a percentage of the transaction amount.
+
+     `internal_fee_in_percents` *decimal*   
+    :    Commission charged by iumiCash. 
+         The commission value is calculated as a percentage of the transaction amount.   
+   
+     `external_fee_fix` [*integer*][cent integer]
+    :    Commission charged by a third party.
+         The commission is charged as a fixed value regardless of the transaction amount.
+
+     `internal_fee_fix` [*integer*][cent integer]
+    :    Commission charged by iumiCash.
+         The commission is charged as a fixed value regardless of the transaction amount.
+
+     `external_cashback_in_percents` *decimal*   
+    :   Cashback returned by a third party. The cashback value is calculated as a percentage of the transaction amount.
+    :   !!! note ""
+             This value is negative decimal by default, if exists and not equal 0. 
+
+     `internal_cashback_in_percents` *decimal*   
+    :   Cashback returned by iumiCash. The cashback value is calculated as a percentage of the transaction amount.
+    :   !!! note ""
+             This value is negative decimal by default, if exists and not equal 0. 
+
+     `external_cashback_fix` [*integer*][cent integer]
+    :   Cashback returned by a third party. The cashback is charged as a fixed value regardless of the transaction amount.
+    :   !!! note ""
+             * This value is negative decimal by default, if exists and not equal 0. 
+
+     `internal_cashback_fix` [*integer*][cent integer]
+    :   Cashback returned by iumiCash. The cashback is charged as a fixed value regardless of the transaction amount.
+    :   !!! note ""
+             * This value is negative decimal by default, if exists and not equal 0. 
+
+
+### Payment status
+
+???+ info "Description"
+
+    `status` *string*
+    :    Payment service status.
+        
+    `available` *boolean*
+    :    Is payment service available for transactions.
+
+    `color` *string*
+    :    Status color.
 
 ### Schema
 
@@ -339,3 +457,4 @@ For example, for payment service `bmobile` credentials will be `phone`.
 
 [possible errors]: ../responses.md#failed-requests
 [identifier]: ../types.md#iumicash-identifier
+[cent integer]: ../types.md#cent-integer

@@ -1,0 +1,5 @@
+Terminal API:
+3) If refund exists, then you have to download the iumiCash app to receive to this account internal transactions
+4) Change footer content of cheque. (Please, save cheque, tech support phone: ....)
+5) Make FAQ section
+6) If iumiCash is not reachable, then terminal system has to print default cheque content. (Because Terminal system will pull iumiCash backend for saving transaction)

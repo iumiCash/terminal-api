@@ -58,100 +58,24 @@ Get available payments services request.
                 "description": "Bmobile service",
                 "category_id": "8c51cb48-624d-4706-ba6a-2608f389d6a2",
                 "category": "Mobile",
-                "image_url": "https://example.com/image.jpg",
-                "schema": {
-                  "phone": {
-                    "label": "Phone number",
-                    "placeholder": "",
-                    "defaultValue": null,
-                    "type": "phone",
-                    "keyboardType": "number-pad",
-                    "includedCountries": [
-                      "SB"
-                    ],
-                    "validators": {
-                      "required": true
-                    },
-                    "credentials": true,
-                    "order": 0
-                  },
-                  "amount": {
-                    "label": "Top Up Amount (SBD)",
-                    "placeholder": "",
-                    "defaultValue": 0,
-                    "type": "amount",
-                    "keyboardType": "numeric",
-                    "includedCountries": null,
-                    "validators": {
-                      "required": true,
-                      "less_than": 1000,
-                      "more_than": 1
-                    },
-                    "order": 1
-                  },
-                  "description": {
-                    "label": "Description",
-                    "placeholder": "Bmobile Top Up",
-                    "defaultValue": "Bmobile Top Up",
-                    "type": "input",
-                    "keyboardType": "default",
-                    "includedCountries": null,
-                    "validators": {
-                      "required": false
-                    },
-                    "order": 2
-                  }
-                }
+                "status": {
+                  "status": "Active",
+                  "available": true,
+                  "color": "#ff0000"
+                },
+                "image_url": "https://example.com/image.jpg"
               },
               {
                 "key": "satsol",
                 "description": "Satsol service",
                 "category_id": "a9fa2eb9-ee13-4707-aa27-533091b31b88",
                 "category": "Internet",
-                "image_url": "https://example.com/image.jpg",
-                "schema": {
-                  "phone": {
-                    "label": "Phone number",
-                    "placeholder": "",
-                    "defaultValue": null,
-                    "type": "phone",
-                    "keyboardType": "number-pad",
-                    "includedCountries": [
-                      "SB"
-                    ],
-                    "validators": {
-                      "required": true
-                    },
-                    "credentials": true,
-                    "order": 0
-                  },
-                  "amount": {
-                    "label": "Top Up Amount (SBD)",
-                    "placeholder": "",
-                    "defaultValue": 0,
-                    "type": "amount",
-                    "keyboardType": "numeric",
-                    "includedCountries": null,
-                    "validators": {
-                      "required": true,
-                      "less_than": 1000,
-                      "more_than": 1
-                    },
-                    "order": 1
-                  },
-                  "description": {
-                    "label": "Description",
-                    "placeholder": "Bmobile Top Up",
-                    "defaultValue": "Bmobile Top Up",
-                    "type": "input",
-                    "keyboardType": "default",
-                    "includedCountries": null,
-                    "validators": {
-                      "required": false
-                    },
-                    "order": 2
-                  }
-                }
+                "status": {
+                  "status": "Active",
+                  "available": true,
+                  "color": "#ff0000"
+                },
+                "image_url": "https://example.com/image.jpg"
               }
             ]
             ```
@@ -185,50 +109,12 @@ Get available payments services request.
                 "description": "Bmobile service",
                 "category_id": "8c51cb48-624d-4706-ba6a-2608f389d6a2",
                 "category": "Mobile",
-                "image_url": "https://example.com/image.jpg",
-                "schema": {
-                  "phone": {
-                    "label": "Phone number",
-                    "placeholder": "",
-                    "defaultValue": null,
-                    "type": "phone",
-                    "keyboardType": "number-pad",
-                    "includedCountries": [
-                      "SB"
-                    ],
-                    "validators": {
-                      "required": true
-                    },
-                    "credentials": true,
-                    "order": 0
-                  },
-                  "amount": {
-                    "label": "Top Up Amount (SBD)",
-                    "placeholder": "",
-                    "defaultValue": 0,
-                    "type": "amount",
-                    "keyboardType": "numeric",
-                    "includedCountries": null,
-                    "validators": {
-                      "required": true,
-                      "less_than": 1000,
-                      "more_than": 1
-                    },
-                    "order": 1
-                  },
-                  "description": {
-                    "label": "Description",
-                    "placeholder": "Bmobile Top Up",
-                    "defaultValue": "Bmobile Top Up",
-                    "type": "input",
-                    "keyboardType": "default",
-                    "includedCountries": null,
-                    "validators": {
-                      "required": false
-                    },
-                    "order": 2
-                  }
-                }
+                "status": {
+                  "status": "Active",
+                  "available": true,
+                  "color": "#ff0000"
+                },
+                "image_url": "https://example.com/image.jpg"
               }
             ]
             ```
@@ -274,22 +160,35 @@ Request and response objects
     `key` *string* **unique**
     :    Payment's unique identifier.
 
+    `description` *string*
+    :    Description of payment.
+
     `category_id` *[ID][identifier]* 
     :    Payment's category identifier.
 
-    `category_name` *string* 
+    `category` *string* 
     :    Payment's category name.
 
-    `description` *string*
-    :    Description of payment.
+    `status` [*object*](#payment-status)
+    :    Payment's status.
 
     `image_url` *URL string*
     :    Payment's image url.
     
-    `schema` [*object*][payment schema]
-    :    Payment schema. Required to render specific service's fields.
+
+### Payment status
+
+???+ info "Description"
+
+    `status` *string*
+    :    Payment service status.
+        
+    `available` *boolean*
+    :    Is payment service available for transactions.
+
+    `color` *string*
+    :    Status color.
 
 
 [possible errors]: ../responses.md#failed-requests
-[payment schema]: ../payments/payment_schema.md#schema
 [identifier]: ../types.md#iumicash-identifier

@@ -331,7 +331,7 @@ Request and response objects
     * Failed
 
 [idempotency]: ../idempotency.md
-[credentials]: ../payments/payment_schema.md#credentials
+[credentials]: ../payments/get.md#credentials
 [possible errors]: ../responses.md#failed-requests
 [fee object]: ../transactions/cash_in.md#fees
 [cheque field]: ../transactions/cash_in.md#cheque-field

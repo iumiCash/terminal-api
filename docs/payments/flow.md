@@ -78,7 +78,7 @@ The user clicked on the payment.
 
 The terminal system sends a request to the iumiCash server at `GET /api/v1/payments/schemas/<key>/`.
 
-See [This link](payment_schema.md) for more information about this request.
+See [This link](get.md) for more information about this request.
 
 ### error_page
 

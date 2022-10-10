@@ -3,7 +3,9 @@
 
 ```mermaid
 flowchart TD
-    start([Start]) ----> input_username[\"Input username"/];
+    start([Start]) --> cash_in_details_request>"Get cash_in details request"];
+    cash_in_details_request --> |HTTP 4xx-5xx| cash_in_error(["HTTP 4xx: Cash in not available"]) --> start;
+    cash_in_details_request ----> |HTTP 200 OK| input_username[\"Input username"/];
     
     subgraph username_validation ["Username validation"];
         input_username --> check_username_request>"Check username request"];
@@ -26,6 +28,8 @@ flowchart TD
     error_deposit_request --> print_cheque[["Print cheque"]];
 
     click start href "#start";
+    click cash_in_details_request href "#cash_in_details_request";
+    click cash_in_error href "#error_page";
     click input_username href "#input_username";
     click check_username_request href "#check_username_request";
     click show_username_info href "#show_username_info";
@@ -45,6 +49,12 @@ flowchart TD
 ### start
 
 The initial screen with the ability to enter username and click on the "Next" button
+
+### cash_in_details_request
+
+The terminal system sends a request to the iumiCash server at `GET /api/v1/cash_in/`.
+
+See [This link](details.md) for more information about this request.
 
 ### input_username
 

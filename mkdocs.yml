@@ -1,6 +1,7 @@
 site_name: Terminal REST API
 
 theme:
+  logo: assets/logo.svg
   palette:
     # Palette toggle for light mode
     - scheme: default
@@ -62,6 +63,9 @@ extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
+extra_css:
+  - assets/css/style.css
+
 plugins:
   - search
   - git-revision-date-localized:
@@ -76,6 +80,7 @@ nav:
   - Types: types.md
   - Cash In:
       - Cash In - Introduction : cash_in/index.md
+      - Details: cash_in/details.md
       - Flow diagram: cash_in/flow.md
       - Cheque generation: cash_in/cheque_generation.md
   - Users:
@@ -83,7 +88,6 @@ nav:
   - Daily:
       - Daily requests - Introduction : daily/index.md
       - Reports: daily/reports.md
-      - Fees: daily/fees.md
       - Payments: daily/payments.md
       - Constants: daily/constants.md
   - Transactions:
@@ -96,7 +100,7 @@ nav:
       - Payments - Introduction: payments/index.md
       - Payment categories: payments/categories.md
       - Payment services: payments/payments.md
-      - Payment schema: payments/payment_schema.md
+      - Get payment: payments/get.md
       - Flow diagram: payments/flow.md
       - Check credentials: payments/check_credentials.md
       - Cheque generation: payments/cheque_generation.md
