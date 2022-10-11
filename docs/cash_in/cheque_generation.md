@@ -144,6 +144,7 @@ This is the json values code that the terminal renders after inserting `cheque_c
   </div>
   <div class="separator"></div>
   <div class="copyright">
+    <p class="copyright_text">Please save cheque until paying for service</p>
     <p class="contacts_text">Contact details: +6104123123 @Andrew Taylor</p>
     <p class="copyright_text">Copyright 2022</p>
   </div>
@@ -223,9 +224,11 @@ This is the json values code that the terminal renders after inserting `cheque_c
 If for some reason the iumiCash server has not processed the user's transaction,
 he can always come up with a receipt and receive a refund on this receipt.
 A receipt contains the transaction ID, transaction details and amount of the transaction.
-The agent (or other actor) validates the provided data and marks this transaction as `refunded`
-inside the iumiCash system.
-This is necessary so that the user cannot go with this receipt and get a refund one more time.
 
+## Failed Cheque Generating
+
+If iumiCash did not respond to the request and as a result did not return the content receipt, 
+the terminal must print the receipt so that the user can always get the money back in one form 
+or another or contact the support service.
 
 [cash in transaction]: ../transactions/cash_in.md

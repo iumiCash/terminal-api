@@ -90,6 +90,7 @@ nav:
       - Reports: daily/reports.md
       - Payments: daily/payments.md
       - Constants: daily/constants.md
+      - FAQ: daily/faq.md
   - Transactions:
       - Cash In deposit: transactions/cash_in.md
       - Pay For Service: transactions/send_payment.md
