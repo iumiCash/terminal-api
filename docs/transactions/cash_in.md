@@ -4,7 +4,7 @@
 
 Deposit money request.
 
-`POST /api/v1/transactions/cash_in/`
+`POST /v1/terminal-api/transactions/cash-in`
 
 
 ### Headers
@@ -16,7 +16,7 @@ Deposit money request.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
     `Content-Type` *string* **required**
     :    The media type. Required for operations with a request body. The value is `application/<format>`, where format is `json`.
@@ -37,9 +37,6 @@ Deposit money request.
 
     `terminal_id` *string* **required**
     :    From which terminal making deposit request.
-
-    `fees` [*object*](#fees) **required**
-    :    Included fees.
 
 
 ### Response
@@ -68,20 +65,16 @@ Deposit money request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/cash_in/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/transactions/cash-in \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
         {
           "username": "fshevchenko",
           "amount": 1000,
           "system_transaction_id": "123456",
-          "terminal_id": "190AB",
-          "fees": {
-            "internal_fee": 10,
-            "internal_cashback": 0
-          }
+          "terminal_id": "190AB"
         }
         '
         ```
@@ -159,18 +152,14 @@ Deposit money request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/transactions/cash_in/
+        curl -v -X GET https://iumi.cash/v1/terminal-api/transactions/cash-in \
         -H "Content-Type: application/json" \
         -d ' \
         {
           "username": "fshevchenko",
           "amount": 1000,
           "system_transaction_id": "123456",
-          "terminal_id": "190AB",
-          "fees": {
-            "internal_fee": 10,
-            "internal_cashback": 0
-          }
+          "terminal_id": "190AB"
         }
         '
         ```
@@ -183,14 +172,12 @@ Deposit money request.
             See more [possible errors].
 
         === "Status code"
-            `HTTP 403 Forbidden`
+            `HTTP 401 Unauthorized`
 
         === "Response body"
             ```json
             {
-                "error": "unauthotized",
-                "description": "Authentication header not provided",
-                "field_errors": []
+                "message": "unauthorized"
             }
             ```
 
@@ -229,16 +216,6 @@ This schema is used for render specific field on cheque.
 
     * `SBD`
     * `NZD`
-
-### Fees
-
-???+ info "Description"
-
-    `internal_fee` [*integer*][cent integer]
-    :    Internal fee amount.
-
-    `internal_cashback` [*integer*][cent integer]
-    :    Internal cashback amount.
 
 
 [idempotency]: ../idempotency.md

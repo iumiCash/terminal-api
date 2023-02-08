@@ -23,8 +23,7 @@ limit the size of, and sort the data in the responses.
 ## HTTP request headers
 
 `Authorization` *string*
-:    To make REST API calls, include the bearer token in this header with the `Bearer` authentication scheme. 
-     The value is `Bearer <Access-Token>`. To get `access token` see [access token].
+:    The value is `Basic <Access-Token>`. See [authentication header] for more details.
 
 `Content-Type` *string*
 :    The media type. Required for operations with a request body. The value is `application/<format>`, where format is `json`.
@@ -34,3 +33,4 @@ limit the size of, and sort the data in the responses.
 
 
 [idempotency]: idempotency.md
+[authentication header]: auth/index.md

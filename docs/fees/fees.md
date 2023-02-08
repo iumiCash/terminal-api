@@ -14,9 +14,6 @@ taking into account the deduction of all commissions, cashback, etc. from the am
     `key` *string* **unique**
     :    Transaction type key
 
-    `max_amount` [*integer*][cent integer]
-    :    Transaction maximum amount
-
     `rules` *list of [*rule*](#rule)*
     :    This field describes which rule element should be applied to the entered amount. Fields of rules element:
     
@@ -50,34 +47,34 @@ taking into account the deduction of all commissions, cashback, etc. from the am
     :    Commission charged by a third party. 
          The commission value is calculated as a percentage of the transaction amount.
 
-     `internal_fee_in_percents` *decimal*   
+    `internal_fee_in_percents` *decimal*   
     :    Commission charged by iumiCash. 
          The commission value is calculated as a percentage of the transaction amount.   
    
-     `external_fee_fix` [*integer*][cent integer]
+    `external_fee_fix` [*integer*][cent integer]
     :    Commission charged by a third party.
          The commission is charged as a fixed value regardless of the transaction amount.
 
-     `internal_fee_fix` [*integer*][cent integer]
+    `internal_fee_fix` [*integer*][cent integer]
     :    Commission charged by iumiCash.
          The commission is charged as a fixed value regardless of the transaction amount.
 
-     `external_cashback_in_percents` *decimal*   
+    `external_cashback_in_percents` *decimal*   
     :   Cashback returned by a third party. The cashback value is calculated as a percentage of the transaction amount.
     :   !!! note ""
              This value is negative decimal by default, if exists and not equal 0. 
 
-     `internal_cashback_in_percents` *decimal*   
+    `internal_cashback_in_percents` *decimal*   
     :   Cashback returned by iumiCash. The cashback value is calculated as a percentage of the transaction amount.
     :   !!! note ""
              This value is negative decimal by default, if exists and not equal 0. 
 
-     `external_cashback_fix` [*integer*][cent integer]
+    `external_cashback_fix` [*integer*][cent integer]
     :   Cashback returned by a third party. The cashback is charged as a fixed value regardless of the transaction amount.
     :   !!! note ""
              * This value is negative decimal by default, if exists and not equal 0. 
 
-     `internal_cashback_fix` [*integer*][cent integer]
+    `internal_cashback_fix` [*integer*][cent integer]
     :   Cashback returned by iumiCash. The cashback is charged as a fixed value regardless of the transaction amount.
     :   !!! note ""
              * This value is negative decimal by default, if exists and not equal 0. 

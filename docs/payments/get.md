@@ -4,7 +4,7 @@
 
 Payment service.
 
-`GET /api/v1/payments/services/<key:string>/`
+`GET /v1/terminal-api/payments/services/<key:string>/`
 
 
 ### Headers
@@ -13,7 +13,7 @@ Payment service.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
 
 ### Path parameters
@@ -46,6 +46,9 @@ Payment service.
     `image_url` *URL string*
     :    Payment's image url.
     
+    `min_transaction_payment` [*integer*][cent integer]
+    :    Min transaction payment amount.
+
     `schema` [*object*](#schema)
     :    Payment schema.
 
@@ -62,8 +65,8 @@ Payment service.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/services/bmobile/ \
-        -H "Authorization: Basic <base64 encoded username:password>"
+        curl -v -X GET https://iumi.cash/v1/terminal-api/payments/services/bmobile/ \
+        -H "Authorization: Basic <base64 encoded email:password>"
         ```
 
     === "Response"
@@ -131,7 +134,6 @@ Payment service.
               },
               "fee": {
                 "key": "bmobile",
-                "max_amount": 100000,
                 "rules": [
                   {
                     "less_than": 10100,
@@ -169,8 +171,8 @@ Payment service.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash hl_lines="1"
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/services/not_exist/
-        -H "Authorization: Basic <base64 encoded username:password>"
+        curl -v -X GET https://iumi.cash/v1/terminal-api/payments/services/not_exist/
+        -H "Authorization: Basic <base64 encoded email:password>"
         ```
 
     === "Response"
@@ -199,7 +201,7 @@ Payment service.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/services/bmobile/
+        curl -v -X GET https://iumi.cash/v1/terminal-api/payments/services/bmobile/
         ```
 
     === "Response"
@@ -210,14 +212,12 @@ Payment service.
             See another [possible errors].
 
         === "Status code"
-            `HTTP 403 Forbidden`
+            `HTTP 401 Unauthorized`
 
         === "Response body"
             ```json
             {
-                "error": "unauthotized",
-                "description": "Authentication header not provided",
-                "field_errors": []
+                "message": "unauthorized"
             }
             ```
 
@@ -232,9 +232,6 @@ Request and response objects
 
     `key` *string*
     :    Transaction type key
-
-    `max_amount` [*integer*][cent integer]
-    :    Transaction maximum amount
 
     `rules` *list of [*rule*](#rule)*
     :    This field describes which rule element should be applied to the entered amount.
@@ -257,34 +254,34 @@ Request and response objects
     :    Commission charged by a third party. 
          The commission value is calculated as a percentage of the transaction amount.
 
-     `internal_fee_in_percents` *decimal*   
+    `internal_fee_in_percents` *decimal*   
     :    Commission charged by iumiCash. 
          The commission value is calculated as a percentage of the transaction amount.   
    
-     `external_fee_fix` [*integer*][cent integer]
+    `external_fee_fix` [*integer*][cent integer]
     :    Commission charged by a third party.
          The commission is charged as a fixed value regardless of the transaction amount.
 
-     `internal_fee_fix` [*integer*][cent integer]
+    `internal_fee_fix` [*integer*][cent integer]
     :    Commission charged by iumiCash.
          The commission is charged as a fixed value regardless of the transaction amount.
 
-     `external_cashback_in_percents` *decimal*   
+    `external_cashback_in_percents` *decimal*   
     :   Cashback returned by a third party. The cashback value is calculated as a percentage of the transaction amount.
     :   !!! note ""
              This value is negative decimal by default, if exists and not equal 0. 
 
-     `internal_cashback_in_percents` *decimal*   
+    `internal_cashback_in_percents` *decimal*   
     :   Cashback returned by iumiCash. The cashback value is calculated as a percentage of the transaction amount.
     :   !!! note ""
              This value is negative decimal by default, if exists and not equal 0. 
 
-     `external_cashback_fix` [*integer*][cent integer]
+    `external_cashback_fix` [*integer*][cent integer]
     :   Cashback returned by a third party. The cashback is charged as a fixed value regardless of the transaction amount.
     :   !!! note ""
              * This value is negative decimal by default, if exists and not equal 0. 
 
-     `internal_cashback_fix` [*integer*][cent integer]
+    `internal_cashback_fix` [*integer*][cent integer]
     :   Cashback returned by iumiCash. The cashback is charged as a fixed value regardless of the transaction amount.
     :   !!! note ""
              * This value is negative decimal by default, if exists and not equal 0. 
@@ -392,10 +389,10 @@ which indicates this field as `credentials field`.
 This table shows payment service and their `credential` fields.
 
 | Payment service | Credential fields |
-| --------------- | ----------------- |
-| `Bmobile`       | `phone`           |
-| `SATSOL`        | `login`           |
-| `Solomon Water` | `meter`           |
+| --------------- |------------|
+| `Bmobile`       | `phone`    |
+| `SATSOL`        | `login`    |
+| `Solomon Water` | `meter`    |
 
 
 ### How to identify credential field

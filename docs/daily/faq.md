@@ -4,7 +4,7 @@
 
 Frequently Asked Questions request.
 
-`GET /api/v1/faq/`
+`GET /v1/terminal-api/faq/`
 
 
 ### Headers
@@ -13,7 +13,7 @@ Frequently Asked Questions request.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
 
 ### Response
@@ -32,8 +32,8 @@ Frequently Asked Questions request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/faq/ \
-        -H "Authorization: Basic <base64 encoded username:password>"
+        curl -v -X GET https://iumi.cash/v1/terminal-api/faq/ \
+        -H "Authorization: Basic <base64 encoded email:password>"
         ```
 
     === "Response"
@@ -72,7 +72,7 @@ Frequently Asked Questions request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/faq/
+        curl -v -X GET https://iumi.cash/v1/terminal-api/faq/
         ```
 
     === "Response"
@@ -83,14 +83,12 @@ Frequently Asked Questions request.
             See another [possible errors].
 
         === "Status code"
-            `HTTP 403 Forbidden`
+            `HTTP 401 Unauthorized`
 
         === "Response body"
             ```json
             {
-                "error": "unauthotized",
-                "description": "Authentication header not provided",
-                "field_errors": []
+                "message": "unauthorized"
             }
             ```
 

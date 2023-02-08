@@ -4,7 +4,7 @@
 
 Pay for service request.
 
-`POST /api/v1/transactions/payments/`
+`POST /v1/terminal-api/transactions/payments`
 
 
 ### Headers
@@ -16,7 +16,7 @@ Pay for service request.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
     `Content-Type` *string* **required**
     :    The media type. Required for operations with a request body. The value is `application/<format>`, where format is `json`.
@@ -41,9 +41,6 @@ Pay for service request.
     `terminal_id` *string* **required**
     :    From which terminal making deposit request.
 
-    `fees` [*object*](#fees) **required**
-    :    Included fees.
-
 
 ### Response
 
@@ -52,6 +49,10 @@ Pay for service request.
     `transaction_id` *[ID][identifier]* **unique**
 
     :    iumiCash transaction identifier. You can use it later to check transaction details.
+
+    `system_transaction_id` *string* **unique**
+
+    :    Terminal's internal transaction_id.
 
     `created_at` *datetime*
 
@@ -81,9 +82,9 @@ Pay for service request.
             usage strategies.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/payments/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/transactions/payments/ \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
         {
@@ -194,10 +195,10 @@ Pay for service request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/payments/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/transactions/payments/ \
         -H "Content-Type: application/json" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
-        -H "Authorization: Basic <base64 encoded username:password>"
+        -H "Authorization: Basic <base64 encoded email:password>"
         -d ' \
         {
           "key": "bmobile",
@@ -250,7 +251,7 @@ Pay for service request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/payments/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/transactions/payments/ \
         -H "Content-Type: application/json" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \

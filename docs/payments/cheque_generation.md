@@ -17,9 +17,9 @@ This is the json values code that the terminal renders after inserting `cheque_c
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/payments/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/transactions/payments \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
         {
@@ -29,13 +29,7 @@ This is the json values code that the terminal renders after inserting `cheque_c
           },
           "amount": 1000,
           "system_transaction_id": "123456",
-          "terminal_id": "190AB",
-          "fees": {
-            "internal_fee": 40,
-            "external_fee": 30,
-            "internal_cashback": 20,
-            "external_cashback": 10
-          }
+          "terminal_id": "190AB"
         }
         '
         ```
