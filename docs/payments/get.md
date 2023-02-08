@@ -133,7 +133,6 @@ Payment service.
                 }
               },
               "fee": {
-                "key": "bmobile",
                 "rules": [
                   {
                     "less_than": 10100,
@@ -229,9 +228,6 @@ Request and response objects
 ### Fee
 
 ???+ info "Description"
-
-    `key` *string*
-    :    Transaction type key
 
     `rules` *list of [*rule*](#rule)*
     :    This field describes which rule element should be applied to the entered amount.
