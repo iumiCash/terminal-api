@@ -1,0 +1,37 @@
+{
+  "status": {
+    "status": "Active",
+    "available": true,
+    "color": "#ff0000"
+  },
+  "fee": {
+    "key": "bmobile",
+    "max_amount": 100000,
+    "rules": [
+      {
+        "less_than": 10100,
+        "more_than": 0,
+        "external_fee_in_percents": 0,
+        "internal_fee_in_percents": 0,
+        "external_fee_fix": 125,
+        "internal_fee_fix": 175,
+        "external_cashback_in_percents": 0,
+        "internal_cashback_in_percents": 0,
+        "external_cashback_fix": 0,
+        "internal_cashback_fix": 0
+      },
+      {
+        "less_than": 1000000,
+        "more_than": 10100,
+        "external_fee_in_percents": 0,
+        "internal_fee_in_percents": 0,
+        "external_fee_fix": 125,
+        "internal_fee_fix": 175,
+        "external_cashback_in_percents": 0,
+        "internal_cashback_in_percents": 0,
+        "external_cashback_fix": 0,
+        "internal_cashback_fix": 0
+      }
+    ]
+  }
+}
