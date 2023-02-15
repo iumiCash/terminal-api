@@ -1,10 +1,14 @@
 # Consolidated Report generation
 
+!!! danger:
+    WIP
+
+
 ## Generate Consolidated report request API
 
 Generate Consolidated report.
 
-`POST /api/v1/reports/consolidated/`
+`POST /v1/terminal-api/reports/consolidated/`
 
 
 ### Headers
@@ -13,7 +17,7 @@ Generate Consolidated report.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
     `Content-Type` *string* **required**
     :    The media type. Required for operations with a request body. The value is `application/<format>`, where format is `json`.
@@ -65,9 +69,9 @@ Generate Consolidated report.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/reports/cross_check/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/reports/cross_check/ \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
         {
@@ -95,7 +99,7 @@ Generate Consolidated report.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/reports/cross_check/
+        curl -v -X GET https://iumi.cash/v1/terminal-api/reports/cross_check/
         -H "Content-Type: application/json" \
         -d ' \
         {

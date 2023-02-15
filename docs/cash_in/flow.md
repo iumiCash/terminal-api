@@ -52,7 +52,7 @@ The initial screen with the ability to enter username and click on the "Next" bu
 
 ### cash_in_details_request
 
-The terminal system sends a request to the iumiCash server at `GET /api/v1/cash_in/`.
+The terminal system sends a request to the iumiCash server at `GET /v1/terminal-api/cash_in/`.
 
 See [This link](details.md) for more information about this request.
 
@@ -62,20 +62,20 @@ The user enters username and clicks on the "Next" button
 
 ### check_username_request
 
-The terminal system sends a request to the iumiCash server at `GET /api/v1/users/<username:str>/`.
+The terminal system sends a request to the iumiCash server at `GET /v1/terminal-api/users/<username:str>/`.
 
 See [This link](../users/retrieve.md) for more information about this request.
 
 ### show_username_info
 
-If Response from `GET /api/v1/users/<username:str>/` returned `200 OK`, terminal displays username details,
+If Response from `GET /v1/terminal-api/users/<username:str>/` returned `200 OK`, terminal displays username details,
 such as `first_name` and `last_name`. The terminal waits for one minute until the user clicks the "Next" button.
 
 ### error_page
 
 This page displays any possible error. For example, if a response does not have `2xx Status code`.
 
-If Response from `GET /api/v1/users/<username:str>/` returned `4xx Status Code`, terminal displays error details.
+If Response from `GET /v1/terminal-api/users/<username:str>/` returned `4xx Status Code`, terminal displays error details.
 (`User Not Found`, `User is deactivated`, etc.) and returns user to the [start page](#start) after 10 seconds.
 
 ### insert_money

@@ -4,7 +4,7 @@
 
 Get available payments services request.
 
-`GET /api/v1/payments/services/`
+`GET /v1/terminal-api/payments/services/`
 
 ### Headers
 
@@ -12,15 +12,7 @@ Get available payments services request.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
-
-
-### Query parameters
-
-???+ info "Query parameters"
-
-    `category_id` *[ID][identifier]*
-    :    You can use this query parameter to filter payments by `category`.
+         The value is `Basic <base64string email:password>`
 
 
 ### Response
@@ -39,8 +31,8 @@ Get available payments services request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/services/ \
-        -H "Authorization: Basic <base64 encoded username:password>"
+        curl -v -X GET https://iumi.cash/v1/terminal-api/payments/services/ \
+        -H "Authorization: Basic <base64 encoded email:password>"
         ```
 
     === "Response"
@@ -80,45 +72,6 @@ Get available payments services request.
             ]
             ```
 
-???+ success "Successful request with query params"
-
-    === "Request"
-
-        Example request with cURL. You can make this request in any programming language.
-
-        !!! tip
-            You can filter available payments. For example, by `category`.
-        
-        ```bash hl_lines="1"
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/services/?category_id=8c51cb48-624d-4706-ba6a-2608f389d6a2 \
-        -H "Authorization: Basic <base64 encoded username:password>"
-        ```
-
-    === "Response"
-
-        A successful request returns the `HTTP 200 OK` status code and a JSON response body.
-
-        === "Status code"
-            `HTTP 200 OK`
-
-        === "Response body"
-            ```json
-            [
-              {
-                "key": "bmobile",
-                "description": "Bmobile service",
-                "category_id": "8c51cb48-624d-4706-ba6a-2608f389d6a2",
-                "category": "Mobile",
-                "status": {
-                  "status": "Active",
-                  "available": true,
-                  "color": "#ff0000"
-                },
-                "image_url": "https://example.com/image.jpg"
-              }
-            ]
-            ```
-
 ???+ failure "Authentication header not provided"
 
     === "Request"
@@ -126,7 +79,7 @@ Get available payments services request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/payments/services/
+        curl -v -X GET https://iumi.cash/v1/terminal-api/payments/services/
         ```
 
     === "Response"
@@ -137,14 +90,12 @@ Get available payments services request.
             See another [possible errors].
 
         === "Status code"
-            `HTTP 403 Forbidden`
+            `HTTP 401 Unauthorized`
 
         === "Response body"
             ```json
             {
-                "error": "unauthotized",
-                "description": "Authentication header not provided",
-                "field_errors": []
+                "message": "unauthorized"
             }
             ```
 

@@ -4,7 +4,7 @@
 
 Get transaction status request.
 
-`GET /api/v1/transactions/internal/<transaction_id>`
+`GET /v1/terminal-api/transactions/internal/<transaction_id>`
 
 !!! tip
     `transaction_id` is a iumiCash transaction identifier.
@@ -17,7 +17,7 @@ Get transaction status request.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
     `Content-Type` *string* **required**
     :    The media type. Required for operations with a request body. The value is `application/<format>`, where format is `json`.
@@ -56,9 +56,9 @@ Get transaction status request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://api.iumi.cash/api/v1/transactions/internal/390IDFE2 \
+        curl -v -X GET https://iumi.cash/v1/terminal-api/transactions/internal/390IDFE2 \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         ```
 
     === "Response"
@@ -86,9 +86,9 @@ Get transaction status request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://api.iumi.cash/api/v1/transactions/internal/31213 \
+        curl -v -X GET https://iumi.cash/v1/terminal-api/transactions/internal/31213 \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         ```
 
     === "Response"

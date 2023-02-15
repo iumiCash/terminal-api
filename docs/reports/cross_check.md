@@ -4,7 +4,7 @@
 
 Generate Cross-Check report.
 
-`POST /api/v1/reports/cross_check/`
+`POST /v1/terminal-api/reports/cross_check/`
 
 
 ### Headers
@@ -13,7 +13,7 @@ Generate Cross-Check report.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
     `Content-Type` *string* **required**
     :    The media type. Required for operations with a request body. The value is `application/<format>`, where format is `json`.
@@ -44,16 +44,9 @@ Generate Cross-Check report.
 
 ### Response
 
-!!! danger
-    WIP
-
 ???+ success "Response"
 
-    `transaction_id` *[ID][identifier]* **unique**
-    :    iumiCash transaction identifier.
-
-    `system_transaction_id` *string* **unique**
-    :    Terminal's internal transaction_id.
+    *list of [*transaction*](#transaction)*
 
 
 ### Examples
@@ -65,9 +58,9 @@ Generate Cross-Check report.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/reports/cross_check/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/reports/cross_check/ \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
         {
@@ -85,7 +78,26 @@ Generate Cross-Check report.
 
         === "Response body"
             ```json
-            {}
+            [
+                {
+                    "transaction_id": "639471e1a7c82be8b86e20fd",
+                    "system_transaction_id": "ABC124",
+                    "amount": 1000,
+                    "currency": "SBD",
+                    "description": "Terminal(Term #3) Cash In",
+                    "terminal": "Term #3",
+                    "status": "Success",
+                    "date": "2022-12-10T11:47:45.718Z",
+                    "fees": {
+                        "amount": 1000,
+                        "internal_fee": 0,
+                        "external_fee": 0,
+                        "internal_cashback": 0,
+                        "external_cashback": 0,
+                        "total": 1000
+                    }
+                }
+            ]
             ```
 
 ???+ failure "Authentication header not provided"
@@ -95,7 +107,7 @@ Generate Cross-Check report.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/reports/cross_check/
+        curl -v -X GET https://iumi.cash/v1/terminal-api/reports/cross_check/
         -H "Content-Type: application/json" \
         -d ' \
         {
@@ -112,14 +124,12 @@ Generate Cross-Check report.
             See more [possible errors].
 
         === "Status code"
-            `HTTP 403 Forbidden`
+            `HTTP 401 Unauthorized`
 
         === "Response body"
             ```json
             {
-                "error": "unauthotized",
-                "description": "Authentication header not provided",
-                "field_errors": []
+                "message": "unauthorized"
             }
             ```
 
@@ -128,6 +138,59 @@ Generate Cross-Check report.
 
 Request and response objects
 
+### Transaction
+
+???+ info "Description"
+
+    `transaction_id` *[ID][identifier]* 
+    :    iumiCash transaction identifier. You can use it later to check transaction details.
+
+    `system_transaction_id` *string* 
+    :    Terminal's internal transaction_id.
+
+    `amount` [*integer*][cent integer] **required**
+    :    Deposit amount.
+
+    `currency` *enum*
+    :    Currency.
+
+    `description` *string*
+    :    Description of transaction.
+
+    `terminal` *string*
+    :    Terminal.
+
+    `status` *enum*
+    :    Transaction's status.
+
+    `date` *datetime*
+    :    Date of transaction.
+
+    `fees` [*fees*](#fees)*
+    :    Fees of transaction.
+
+
+### Fees
+
+???+ info "Description"
+
+    `amount` [*integer*][cent integer]
+    :    Amount.
+
+    `internal_fee` [*integer*][cent integer]
+    :    Internal fee.
+
+    `external_fee` [*integer*][cent integer]
+    :    External fee.
+
+    `internal_cashback` [*integer*][cent integer]
+    :    Internal cashback.
+
+    `external_cashback` [*integer*][cent integer]
+    :    External cashback.
+
+    `total` [*integer*][cent integer]
+    :    Total.
 
 
 [idempotency]: ../idempotency.md

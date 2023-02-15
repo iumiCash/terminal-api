@@ -4,7 +4,7 @@
 
 Retrieve user by `username`
 
-`GET /api/v1/users/<username:str>/`
+`GET /v1/terminal-api/users/<username:str>/`
 
 
 ### Headers
@@ -13,7 +13,7 @@ Retrieve user by `username`
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
 
 ### Response
@@ -29,7 +29,7 @@ Retrieve user by `username`
     `last_name` *string*
     :    User's last name.
 
-    `currency_code` *enum*. See [available currencies](#currencies).
+    `currency` *enum*. See [available currencies](#currencies).
     :    Currency of account.
 
 
@@ -42,8 +42,8 @@ Retrieve user by `username`
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/john_doe/ \
-        -H "Authorization: Basic <base64 encoded username:password>"
+        curl -v -X GET https://iumi.cash/v1/terminal-api/users/john_doe/ \
+        -H "Authorization: Basic <base64 encoded email:password>"
         ```
 
     === "Response"
@@ -59,7 +59,7 @@ Retrieve user by `username`
               "username": "john_doe",
               "first_name": "John",
               "last_name": "Doe",
-              "currency_code": "NZD"
+              "currency": "NZD"
             }
             ```
 
@@ -70,8 +70,8 @@ Retrieve user by `username`
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/unexist/ \
-        -H "Authorization: Basic <base64 encoded username:password>"
+        curl -v -X GET https://iumi.cash/v1/terminal-api/users/unexist/ \
+        -H "Authorization: Basic <base64 encoded email:password>"
         ```
 
     === "Response"
@@ -87,9 +87,7 @@ Retrieve user by `username`
         === "Response body"
             ```json
             {
-                "error": "not_exist",
-                "description": "Username not exist",
-                "field_errors": []
+                "message": "unexist not found"
             }
             ```
 
@@ -100,7 +98,7 @@ Retrieve user by `username`
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/my_username/
+        curl -v -X GET https://iumi.cash/v1/terminal-api/users/my_username/
         ```
 
     === "Response"
@@ -111,14 +109,12 @@ Retrieve user by `username`
             See another [possible errors].
 
         === "Status code"
-            `HTTP 403 Forbidden`
+            `HTTP 401 Unauthorized`
 
         === "Response body"
             ```json
             {
-                "error": "unauthotized",
-                "description": "Authentication header not provided",
-                "field_errors": []
+                "message": "unauthorized"
             }
             ```
 

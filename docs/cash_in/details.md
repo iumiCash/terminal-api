@@ -4,7 +4,7 @@
 
 Get cash_in details.
 
-`GET /api/v1/cash_in/`
+`GET /v1/terminal-api/cash_in/`
 
 
 ### Headers
@@ -13,7 +13,7 @@ Get cash_in details.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
 
 ### Response
@@ -36,8 +36,8 @@ Get cash_in details.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/cash_in/ \
-        -H "Authorization: Basic <base64 encoded username:password>"
+        curl -v -X GET https://iumi.cash/v1/terminal-api/cash_in/ \
+        -H "Authorization: Basic <base64 encoded email:password>"
         ```
 
     === "Response"
@@ -84,7 +84,7 @@ Get cash_in details.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X GET https://terminal-api.iumi.cash/api/v1/users/my_username/
+        curl -v -X GET https://iumi.cash/v1/terminal-api/users/my_username/
         ```
 
     === "Response"

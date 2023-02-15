@@ -76,7 +76,7 @@ The user clicked on the payment.
 
 ### payment_schema_request
 
-The terminal system sends a request to the iumiCash server at `GET /api/v1/payments/schemas/<key>/`.
+The terminal system sends a request to the iumiCash server at `GET /v1/terminal-api/payments/schemas/<key>/`.
 
 See [This link](get.md) for more information about this request.
 
@@ -90,11 +90,11 @@ Terminal renders payment screen based on the provided payment schema.
 
 ### input_user_credentials
 
-User inputs payment credentials, such as `phone_number` if payment is Bmobile/Our Telekom, `login` if payment is Satsol etc.
+User inputs payment credentials, such as `phone` if payment is Bmobile/Our Telekom, `login` if payment is Satsol etc.
 
 ### check_credentials_request
 
-The terminal system sends a request to the iumiCash server at `POST /api/v1/payments/check-credentials`.
+The terminal system sends a request to the iumiCash server at `POST /v1/terminal-api/payments/check-credentials`.
 
 See [This link](../payments/check_credentials.md) for more information about this request.
 
@@ -109,7 +109,7 @@ the terminal can display a list of fees every time a banknote is entered.
 
 ### send_payment_request
 
-The terminal system sends a request to the iumiCash server at `POST /api/v1/transactions/payments/`.
+The terminal system sends a request to the iumiCash server at `POST /v1/terminal-api/transactions/payments/`.
 
 See [This link](../transactions/send_payment.md) for more information about this request.
 

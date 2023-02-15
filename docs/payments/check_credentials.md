@@ -4,7 +4,7 @@
 
 Check credentials request.
 
-`POST /api/v1/payments/check-credentials/`
+`POST /v1/terminal-api/payments/check_credentials`
 
 ### Headers
 
@@ -12,7 +12,7 @@ Check credentials request.
 
     `Authorization` *string* **required**
     :    To make REST API calls, include the basic authorization in this header with the `Basic` authentication scheme. 
-         The value is `Basic <base64string username:password>`
+         The value is `Basic <base64string email:password>`
 
     `Content-Type` *string* **required**
     :    The media type. Required for operations with a request body. The value is `application/<format>`, where format is `json`.
@@ -25,7 +25,7 @@ Check credentials request.
     `key` *string* **required**
     :    Payment type identifier.
 
-    `credentials` [*object*](../payments/get_payment_schema.md#credentials)
+    `credentials` [*object*](../payments/get.md#credentials)
     :    Payment credentials. Credential data various depending on `key`.
 
 ### Response
@@ -45,9 +45,9 @@ Check credentials request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/payments/check-credentials/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/payments/check-credentials/ \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         -d ' \
         {
           "key": "bmobile",
@@ -79,9 +79,9 @@ Check credentials request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/payments/check-credentials/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/payments/check-credentials/ \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         -d ' \
         {
           "key": "bmobile",
@@ -115,9 +115,9 @@ Check credentials request.
         Example request with cURL. You can make this request in any programming language.
 
         ```bash
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/payments/check-credentials/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/payments/check-credentials/ \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         -d ' \
         {
           "key": "bmobile",
@@ -136,14 +136,12 @@ Check credentials request.
             See another [possible errors].
 
         === "Status code"
-            `HTTP 403 Forbidden`
+            `HTTP 401 Unauthorized`
 
         === "Response body"
             ```json
             {
-              "error": "unauthotized",
-              "description": "Authentication header not provided",
-              "field_errors": []
+              "message": "unauthorized"
             }
             ```
 

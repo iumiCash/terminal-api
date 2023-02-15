@@ -8,10 +8,8 @@ To make requests to REST API you need to provide request headers
 ???+ info "Header parameters"
 
     `Authorization` *string* **required**
-    :    Separate your Base64-encoded **username** and **password** by a colon (:).
+    :    Separate your Base64-encoded **email** and **password** by a colon (:).
     
-         Format:  `Basic {Your Base64-encoded username:password}` without curly braces.
+         Format:  `Basic {Your Base64-encoded email:password}` without curly braces.
          
-         Example: `Basic e3tjbGllbnRfaWR9fTp7e2NsaWVudF9zZWNyZXR9fQ==`
-
-
+         Example: `Basic Zm9vQGJhci5iYXo6d2Vha19wYXNzd29yZA==`

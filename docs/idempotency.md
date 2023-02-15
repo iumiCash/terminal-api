@@ -27,9 +27,9 @@ You can make idempotent calls any number of times without concern that the serve
             Here were are using `RequestId` idempotency key.
 
         ```bash hl_lines="4"
-        curl -v -X POST https://terminal-api.iumi.cash/api/v1/transactions/cash_in/ \
+        curl -v -X POST https://iumi.cash/v1/terminal-api/transactions/cash_in/ \
         -H "Content-Type: application/json" \
-        -H "Authorization: Basic <base64 encoded username:password>" \
+        -H "Authorization: Basic <base64 encoded email:password>" \
         -H "RequestId: 7b92603e-77ed-4896-8e78-5dea2050476a" \
         -d ' \
         {
