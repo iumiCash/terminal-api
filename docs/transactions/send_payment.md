@@ -58,14 +58,6 @@ Pay for service request.
 
     :    Created time of the transaction in ISO format.
 
-    `status` [*enum*](../transactions/statuses.md)
-
-    :    Transaction status. Can be one of follows:
-
-         * `Success`
-         * `Pending`
-         * `Failed`
-
     `cheque_content` *list of [*cheque field*][cheque field]*
     :    Cheque fields that will be rendered.
 
